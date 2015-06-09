@@ -1,0 +1,24 @@
+.reverse, .upcase, .downcase are all methods, have pretty self-evident meanings. As is .capitalize
+methods are things done to strings ("This is a string"), and are invoked by putting a . after a string
+using a method on a variable containing a string is equally valid (variable = "string", variable.method)
+variables are defined in a pretty basic manner: variable = "string", integer, or (other variables?) (something else? don't remember third thing)
+"gets" command receives input from user. Can be string or integer
+Ruby automatically inserts new line after each bit of input. .chomps is a method which removes that.
+gets does not need an output to the user attached to it. Does probably need to be attached to avariable, though.
+That attaching of "gets" to a variable means that the user's input is attached to avariable and can then be used.
+Since gets is a command, not a variable in and of itself, using the same "gets.chomp" thing in a program multiple times
+will not lead to its output being saved to the same variable, or anything like that.
+Input for the gets.chomp will be saved in the output directly where the gets.chomp is. 
+This means that, should a prints be used to provide a question for the user, the gets.chomp will be saved right after the question
+whereas, if puts is used, the input will be saved in the line AFTER the question
+If a variable being saved is the last line of a program, then the variable's value will be the last piece of the output, whether
+a command such as puts or print is used or not.
+string interpolation: putting the command (or whatever) #{variable} into a string will make that command be replaced by the 
+value of that variable. Methods can be applied to the variable/string within the {}
+So "I ate a #{food}", where food = ham, will result in the string being "I ate a ham"
+can make variables equal to modified versions of other variables. Example in next line
+variable2 = variable1.capitalize (Other methods are, obviously, applicable)
+Adding an exclamation mark to a method, then applying it to a variable (variable.method!) modifies the variable itself.
+Apparently, only addingthe method itself to a variable only changes the variable for that operation.
+exclamation-marked methods, if they are applied to a variable that already follows what the method does, such as variable = "SSS"
+, then variable.upcase! (upcase makes a variable all-caps, variable was already all caps), results in the variable being null
