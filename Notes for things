@@ -13,6 +13,7 @@ This means that, should a prints be used to provide a question for the user, the
 whereas, if puts is used, the input will be saved in the line AFTER the question
 If a variable being saved is the last line of a program, then the variable's value will be the last piece of the output, whether
 a command such as puts or print is used or not.
+"Ruby will recognize paired "quotation marks" in a string as not ending the string". Thus, that whole sentence would be one string.
 string interpolation: putting the command (or whatever) #{variable} into a string will make that command be replaced by the 
 value of that variable. Methods can be applied to the variable/string within the {}
 So "I ate a #{food}", where food = ham, will result in the string being "I ate a ham"
@@ -22,3 +23,47 @@ Adding an exclamation mark to a method, then applying it to a variable (variable
 Apparently, only addingthe method itself to a variable only changes the variable for that operation.
 exclamation-marked methods, if they are applied to a variable that already follows what the method does, such as variable = "SSS"
 , then variable.upcase! (upcase makes a variable all-caps, variable was already all caps), results in the variable being null
+The ENVIRONMENT is the collection of all variables in the program and all their values, at a given time.
+Control flow means having different outcomes based on differences in the environment.
+If is a statement that takes an expression (something that means something, like an integer, true/false, or a variable)
+If that expression is true, whether by being "true", or by confirming a boolean operation, such as if integer = 4, where integer = 4
+Ruby doesn't care about whitespace, meaning that spaces and such for indentation don't actually matter. 
+That said, indenting stuff to mark it as part of another operation is a good habit, cuz it lets other people see what's going on easier.
+"if" operations demand that you use "==" for "is equal to". Other than that, boolean operators seem to be used normally
+"Equal to or less than" and vice versa are done with "</>" then "=". So: "<=" and ">="
+"if" operations don't need a "then" statement after them to do things if they're true. So:
+if value == true
+  print "this is an example, it can be things other than printing."
+end
+works perfectly fine. 
+That said, Ruby DOES demand that you put a "end" after your if operation is over. After it's ENTIRELY over, including all "else"'s and shit
+"else" is considered true if NO other boolean operators in the operation equal out to true.
+Standard Ruby procedure is to indent after each boolean statement. As seen below.
+So, in the following, else is considered true, and its stuff would be done.
+value = false
+if value == true
+  print "This scenario does not come to fruition"
+else 
+  print "This one does, however, as the "if" statement does not."
+end
+values, integers, variables, etc. can be set equal to strings, integers, or truth statements, which will then make the if/else/whatever
+statements true/false themselves. There are no other options than true/false for the result, as that's how binary computing works
+"elsif" is a statement meaning "else, if". Hence, it acts like a combination of "else" and "if". 
+if the initial "elsif" command is false, then the "elsif" is checked next, and, if true, its stuff is done
+Each of these example things is called an "if/else statement". This is because these statements begin with "if" and end with "else". Complicated shit.
+value = maybe
+if value == true
+  print "value is true" 
+elsif value == maybe
+  print "value... MIGHT be true?"
+else 
+  print "value is certainly not true"
+end
+An infinite number of elsif statements can be added to a single if/else statement.
+The "unless" statement is essentially the "if" statement, but counts as true if the attached value is false. For example:
+unless 4 > 5
+  puts "since 4 < 5, the unless statement outputs to true, and this is printed"
+end
+!= still means "is not equal to". == still means "is equal to"
+variables can be set equal to true/false values
+Ruby also uses boolean operators, which are and (&&), not (!), and or (||)
