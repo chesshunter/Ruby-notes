@@ -22,8 +22,8 @@ variable2 = variable1.capitalize (Other methods are, obviously, applicable)
 Adding an exclamation mark to a method, then applying it to a variable (variable.method!) modifies the variable itself.
 Apparently, only addingthe method itself to a variable only changes the variable for that operation.
 exclamation-marked methods, if they are applied to a variable that already follows what the method does, such as variable = "SSS"
-, then variable.upcase! (upcase makes a variable all-caps, variable was already all caps), results in the variable being null
-The ENVIRONMENT is the collection of all variables in the program and all their values, at a given time.
+, then variable.upcase! (upcase makes a variable all-caps, variable was already all caps), sometimes seems to 
+results in the variable being null The ENVIRONMENT is the collection of all variables in the program and all their values, at a given time.
 Control flow means having different outcomes based on differences in the environment.
 If is a statement that takes an expression (something that means something, like an integer, true/false, or a variable)
 If that expression is true, whether by being "true", or by confirming a boolean operation, such as if integer = 4, where integer = 4
@@ -67,3 +67,47 @@ end
 != still means "is not equal to". == still means "is equal to"
 variables can be set equal to true/false values
 Ruby also uses boolean operators, which are and (&&), not (!), and or (||)
+the "or" symbol (||) is just above enter, on the same key as the backslash (\)
+and is true ONLY if both attached values are true
+not is true ONLY if the attached value is not true
+or is true if one OR both of the attached values is true. This is called an INCLUSIVE OR.
+"**" is basically the exponent thing. It makes exponents happen. has kinda a weird syntax So "2**3 == 8" is true.
+Boolean operators are invoked like so: "if true && 2 == 2" would be true, and thus that if's stuff would be done.
+Except for not, which is invoked differently, as shown below:
+if !(700 == 70) would output to true, whereas something like !true && !true would output to false
+The latter would be false, because the AND demands that both attached values are true, whereas the NOT attached to the two true's
+makes them false, so the AND outputs to false. Essentially, the NOT operator inverts whatever it is attached to.
+Booleans can be combined and shit with parentheses. The parentheses are applied a little like in math For example:
+(true || false) && (!false || (true && false)) would output to true. Obviously, this sorta thing would also work for number
+expressions and variables and shit, but I'm lazy so I just used true and false. Regardless, this sorta thing is both synctactically true
+and pretty useful for programming, especially if you used variables and shit with it. 
+Example program, features some methods, and if/elsif/else statements
+print "What do you think is most important in life? Money, happiness, or others?"
+choice = gets.chomp
+if choice.capitalize == "Money"
+    puts "Your money and your riches will be useless when the time comes"
+elsif choice.capitalize == "Happiness"
+    puts "What use is happiness when it is all cut short without a care for you?"
+elsif choice.capitalize == "Others" 
+    puts "They will abandon you when you need them most"
+elsif choice.capitalize == "Death"
+    puts "Good."
+else 
+    puts "You are a fool even more than the rest. Do not pretend your fencesitting will save you. No, it will doom you just the same."
+end
+The method "include?" can be invoked on a variable to check if it contains a certain string. See following example
+variable = "string of cheese"
+variable.include? "s"
+since the variable includes the substring "s", IE the letter "s", this would return a value of true. This can be used for words,
+numbers, letters, basically just about anything in a string.
+The .include? method IS case-sensitive. So if the S's in the above string were capital, the method would instead return a false
+When searching a string for certain letters and shit, could apply a .downcase or .upcase to it to get around that?
+the .gsub method can be used to replace bits of strings, as shown below. For it to be permanent, has to have the exclamation mark
+variable = "Kill all peoples"
+variable.gsub!(/s/, "unova")
+This would change variable to "kill all peopleunova". 
+The s, the bit that is substituted, HAS to be in slashes. Not super sure why yet.
+can NOT be any space between the gsub! and the beginning of the parentheses. 
+The bit in the quotation marks there is the substituted bit, what the /'d bit is replaced by.
+Generally, methods ending in "?" in Ruby will return a value of either true or false. For this to be of really any use, they 
+should probably be paired with an if/else statement.
