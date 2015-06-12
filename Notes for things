@@ -111,3 +111,96 @@ can NOT be any space between the gsub! and the beginning of the parentheses.
 The bit in the quotation marks there is the substituted bit, what the /'d bit is replaced by.
 Generally, methods ending in "?" in Ruby will return a value of either true or false. For this to be of really any use, they 
 should probably be paired with an if/else statement.
+The "while" statement is used to repeat a loop. 
+"while" checks for a certain condition (more than one? Maybe?), and, while that (those?) conditions (S?) are true, the loop 
+continues running.
+A while loop demands an end statement. Example of a while loop below
+counter = 1
+while counter < 11
+  puts counter
+  counter = counter + 1
+end
+This loop continues running until the counter reaches eleven. I think it would go through this loop 10 times?
+Each time, it would output a single number, counting up, as the counter variable increases by one each time the loop is ran.
+If, say, that "counter = counter + 1" wasn't there, the counter variable would stay at one, and the loop would run infinitely.
+This is called an infinite loop, and will lead to programs crashing.
+The "until" loop is something like a backwards "while" loop: It runs until the condition attached to it is true.
+As shown below, it is almost exactly like an inverse "While" loop:
+i = 0
+until i == 6
+  i += 1
+end
+puts i
+An assignment operators is one which assigns a value to a variable. "=" is an example of an assignment variable.
+Other assignment operators include "+=" "-=" "/=" and "*=". These are all various shorthands of writing variable assignments
+For example: "variable += 4" is exactly the same as "variable = variable + 4", just as "variable *= 2" is the same as "variable = variable * 2"
+The "for" statement is another way of setting up loops, one which doesn't require manually counting up the repetitions.
+The basic syntax for a "for" statement (as I can currently tell) is as so:
+for variable in x..y
+What this does is, it starts variable out at x, no matter what "variable" previously was. then, it runs through the loop a number 
+of times, increasing variable by 1 each time. When variable reaches y, the loop stops. 
+However, the complication in this is that these ranges (the x...y) can be either inclusive or exclusive. 
+EXCLUSIVE means that the last number in the range, y, is not ran. IE, the loop stops when it reaches y.
+However, an INCLUSIVE range would run the loop once variable reached y, then stop.
+Exclusive ranges are made with 3 dots (x...y), while inclusive ones are made with 2 (x..y)
+So, for example, "for variable in 2..4" would run its loop 3 times (2, 3, 4), whereas "for variable in 3...5" would only run
+twice (3, 4). These range things will probably also apply to other things, so keep them in mind.
+"for variable in 1..15" would run 15 times.
+Generally, in Ruby (prolly other languages too), there is more than one way to do things.
+Another way to do things repeatedly in Ruby is iterators.
+the simplest iterator is the "loop {}" command, which invokes the block of code in its spikeparentheses repeatedly.
+So, for example, the line loop {print "kill all"} would print that phrase, infinitely. Basically, using this loop without modification
+is an instant infinite loop
+Luckily, there is a workaround. In RUby, the spiky parentheses (What the FUCK is their name?) ({}) is generally replaceable by 
+the statement "do". This creates a more conventional loop, which can then be closed by "end." For example:
+Thiis would still create an infinite loop, however, so we need to slip the statement "break" in there. 
+Thhis statement, as I and its name hhave implied, breaks loops. It usually is paired with "if" (At least, so far as  Ican tell.)
+So, as an example:
+i = 1
+loop do
+  print "Kill all"
+  break if i > 5
+  i += 1
+end
+This would print "Kill all" until i was greater than five. Unless there's more you can do with it, using loop in this manner
+seems like a shittier and clunkier "while"
+The MODULO operator (caps for emphasis) (%) finds the remainder when a number is divided by another. For example, 
+5 % 2 would be 1, 4 % 2 would be 0, 6 % 3 would be 0, 16 % 5 would be 1, 8 % 3 would be 2, 83 % 4 would be 3, etcetera. 
+Modulo is immensely useful in sorting numbers! For example, ALL even numbers % 2 = 0. 
+The "next" statement skips an iteration of a loop.
+For example, we have the following block of code 
+i = 20
+loop do
+  i -= 1
+  next if i % 2 != 0
+  print "#{i}"
+  break if i <= 0
+end
+This prints out numbers, counting down from twenty. HOWEVER, due to the "next if" statement, it skips odd numbers!
+When i is odd, the next if statement makes the whole loop skip that iteration, and start the next one instead!
+Since ruby runs things from the top-down, it's generally best to put the "next" between the part that counts down (i -= 1)
+and the rest of the loop, or else bad things will prolly happen.
+variables can be set equal to more than one number using arrays. See the following.
+array = [1, 3, 5, 7, 9]                 or perhaps: array = [5, 19, 55, 12, 44, 90, -4]
+Arrays don't have to be in a particular order, they are just a collection of numbers.
+Another iterator is the .each method. 
+This method applies something to every part of a variable.
+Its syntax is as follows: variable.each { |item| Thing done to item }
+The |item| piece of that defines each piece of the variable to which .each is applied as a new variable for the purpose 
+of hte .each method.
+As in other cases with {}, they can be replaced in the .each method with "do", as seen below:
+variable.each do |item|
+  Things done to each piece of variable
+end
+With the {}, either only one action can be applied to each piece of the variable, or I don't know how to apply more.
+Either way, the "do" way of things seems to look better and allows for 1+ things applied to each, so maybe go with that?
+another iterator is the .times method. 
+A basic example, showing the basic syntax, follows:
+10.times { print "Kill" }
+This would print the word "kill" ten times to the console. The .times method is something like a more condensed "for" loop.
+Obviously, the "do" statement remains applicable:
+10.times do
+  print "Kill"
+end
+Nifty, huh?
+  
