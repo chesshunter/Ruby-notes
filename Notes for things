@@ -203,4 +203,37 @@ Obviously, the "do" statement remains applicable:
   print "Kill"
 end
 Nifty, huh?
-  
+Today, I htink, is gonna be a bit of a light day on the learning. Maybe just a review? I'm not sure.
+Anyway, the .split method can be used to split a string into pieces of an array.
+For example: variable = "This sure is a string, all right."
+variable.split(",")
+This would split the string whenever it saw a comma, leading to an array of ["this sure is a string", " all right."]
+However, we could also do variable,split(" "). This would split it whenever Ruby saw a space, leading to:
+[this, sure, is, a, string,, all, right.] 
+.split isn't a very sophisticated tool, but it is useful at times.
+Note, hoewver, that puncutation and such is included with each words, due to the limited-ness of the method.
+Each piece in the array is its own new string.
+Things can be added to strings. For example:
+words = "I hate"
+words = "."
+print words
+This would output "I hate." With the addition of the period! Nifty, eh?
+The various loops and such that demand to be ended with "end" work KINDA like parentheses:
+We can put loops inside of one another, BUT we always need as many end parentheses as we have open parentheses
+IE: As many "end"'s as we have things that open loops which demand "end"'s.
+In this loop:
+i = 1
+while i < 50 do
+    i += 1
+    print i
+end
+the relative position of the "i += 1" and the "print i" DOES matter. The truth of the while statement is checked THROUGHOUT 
+the loop, not just at the beginning. So, during the fiftieth or something iteration in this format, Ruby would increase i to 51
+note that it is more than fifty, and not print i, meaning that, for the last iteration, i is not printed. This may be important!
+Similarly:
+i = 1
+while i < 50 do
+  print i
+  i += 1
+end
+In this block, on the last iteration, Ruby would print i, THEN increase i to 51, thus ending the loop.
