@@ -180,10 +180,10 @@ This prints out numbers, counting down from twenty. HOWEVER, due to the "next if
 When i is odd, the next if statement makes the whole loop skip that iteration, and start the next one instead!
 Since ruby runs things from the top-down, it's generally best to put the "next" between the part that counts down (i -= 1)
 and the rest of the loop, or else bad things will prolly happen.
-variables can be set equal to more than one number using arrays. See the following.
-array = [1, 3, 5, 7, 9]                 or perhaps: array = [5, 19, 55, 12, 44, 90, -4]
+variables can be set equal to more than one number or string using arrays. See the following.
+array = [1, 3, 5, 7, 9]                 or perhaps: array = [5, 19, 55, 12, 44, 90, -4] array = ["cadswallop", "Dander", "apple"]
 Arrays don't have to be in a particular order, they are just a collection of numbers.
-Another iterator is the .each method. 
+Another iterator is the .each method, which would seem to be primarily useful when applied on arrays or hashes.
 This method applies something to every part of a variable.
 Its syntax is as follows: variable.each { |item| Thing done to item }
 The |item| piece of that defines each piece of the variable to which .each is applied as a new variable for the purpose 
@@ -203,7 +203,7 @@ Obviously, the "do" statement remains applicable:
   print "Kill"
 end
 Nifty, huh?
-Today, I htink, is gonna be a bit of a light day on the learning. Maybe just a review? I'm not sure.
+Today, I think, is gonna be a bit of a light day on the learning. Maybe just a review? I'm not sure.
 Anyway, the .split method can be used to split a string into pieces of an array.
 For example: variable = "This sure is a string, all right."
 variable.split(",")
@@ -237,3 +237,106 @@ while i < 50 do
   i += 1
 end
 In this block, on the last iteration, Ruby would print i, THEN increase i to 51, thus ending the loop.
+More things on arrays:
+Each value in an array is called an element.
+Each element in an array gets an index value, as shown below!
+array = [5, 5, 6, 2, 5, 8]
+index    0  1  2  3  4  5
+First element gets index of 0, second of 1, third of 2, and so on.
+Each element in the array can be called specifically using arraytitle[index]
+So, for example, calling array[3] would return the value 2, because 2 is the element in array that has an index of 3 
+This, predictably, also applies for arrays made of strings:
+array = ["string", "STRING", "Strayng", "Stronk"]
+array[3] would return "stronk", because it is the element with an index of 3
+the comma then space after each element of an array isn't necesarry! For example: array = [5,2,1,3,6] is perfectly valid!
+It will still be saved as [5, 2, 1, 3, 6] though, I'm not super sure why?
+arrays can also be elements of arrays! 
+array = [[0,0,0,0],[3,3,3,3],[6,6,6,6],[9,9,9,9]]
+Each element in this array is a different array!
+Putting arrays in an array makes the array multidimensional, cuz it has moredepth. The one above would be considred a two-
+dimensional array, cuz it has two levels of arrays in it. 
+A hash is a collection of key-value pairs. There are similar things in many other languages, such as python and javascript
+The following is the basic syntax of a hash:
+hash_name {
+  key1 => value1,
+  key2 => value2,
+  key3 => value3
+}
+Obviously, this could be extended more or less to make the hash contain more or less keys.
+A hash is something like a smarter opposite of the array: the index is considered the "name" for each element of an array,
+and then the actual given element is the value of that particular index.
+In a hash, each key is manually assigned a value, as is shown below
+hash {
+  "mango" => "good"
+  5 => true
+  true => 5
+}
+As can be seen, each KEY can be strings, numbers, true/false values, many sorts of things. They can NOT be variables, though. 
+So, essentially, the keys of a hash have to be things that Ruby would recognize on their own. The same rules apply for the VALUES
+of these keys!
+to call up these various keys and values and shit, the following syntax is used, similar to that of calling up elements of an array:
+hash[5] #this would return true, because that is what the key 5 is linked to
+hash["mango"] #This, similarly, would return "good", because that's what "mango" is linked to.
+each hash[key] is considered a variable in and of itself. 
+This means that, kinda, the variable attached to a hash kinda is like a multipurpose variable, with different meanings based on
+what's in the []. I guess the same thing would also apply for arrays! Plus you can add to the hash, thus adding to the variable!
+The syntax shown previously for hashes is called "literal notation". It's called that because you are literally manually
+applying values to each key, and setting the hash to a variable.
+Can also make a hash and set it equal to a variable with Hash.new (the hash HAS to be capitalized!)
+this can be applied like so:
+hash_variable = Hash.new
+This sets the variable equal to an empty hash, which is just like setting it equal to an empty curly braces set {}.
+To make that new hash LESS empty, we can do something like this:
+hash_variable["KILL"] = "YES"
+This adds the key "KILL" to the hash, with the value "YES".
+This can be done with any hash, not just empty ones or ones that were made with literal notification!
+When an iterator/loop is applied to a hash or array, this is referred to as ITERATING the array/hash
+This can be done with specific statements, or with methods such as .each.
+For reminders, .each applies something to each element or key in a array/hash, respectively.
+the syntax for .each is as follows:
+variable_array.each { |variable which each element is stored in for the purpose of its iteration in the loop| action done to each element in its iteration of the loop }
+variable_hash.each do |variable to which each key is assigned for its iteration, variable for that key's value|
+  things done to each piece of the variable
+end
+The hash example is an example of using the do statement instead of {}, which makes it look a bit more like a conventional loop.
+That syntax may be a bit... longer than it needs to be, so here's some examples!
+variable_hash.each do |arrays|
+  arrays = arrays + " "
+  puts arrays
+end
+This woudl add a " " to each element of variable_hash, then output each modified element.
+By the way, you can totally do stuff like that! Add stuff to the end of strings. 
+Other modifiers, like -, *, and /, do NOT work on strings, though.
+variable_hash.each { |trees, pears| puts "#{trees}" }
+This outputs all the keys of variable_hash
+Note how, even though only the keys have anything done to them, both the keys and the values have to be defined for the loop.
+Remember that ANYTHING can be used for the placeholder between the | |
+to access a specific element of a multidimensional array, use the following syntax:
+variable_array[index of the array containing the desired element][index of the desired element in its array]
+To iterate over multidimensional arrays, will need to use more than one .each method!
+For example, the following code puts out all the elements of each array within the variable, after adding "pizazz" to it!
+variable_array = [["string", "internet"], ["online", "universal"], ["KILL", "langrey", "point"]]
+variable_array.each do |x|
+  x.each do |pizazz|
+    pizzazz = pizazz + ", but with pizazz!"
+    puts pizzazz
+  end
+end
+Hashes, I think, can't be multidimensional. Which is prolly good, cuz that'd get confusing... 
+Well, I guess you could prolly put an array in as a value, but I would not care much for that.
+Here's an example of iterating over a hash. It's pretty simple, and quite similar to iterating over an array
+restaurant_menu = {
+  "noodles" => 4,
+  "soup" => 3,
+  "salad" => 2
+}
+
+restaurant_menu.each do |item, price|
+  puts "#{item}: #{price}"
+end
+Note, however, how both the key and the value are defined. Also note that, to print out both pieces of a set, using #{} and putting
+them both in a single string will likely be required.
+The concept of hashes being used to make variables multi-purposed can be more easily seen when adding keys and values to a hash:
+variable_hash["key"] = "value"
+See here how a certain aspect of the variable_hash variable (a key in its hash) is modified, by setting it equal to a string
+(giving the key a value)
