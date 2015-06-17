@@ -304,7 +304,7 @@ variable_hash.each do |arrays|
   arrays = arrays + " "
   puts arrays
 end
-This woudl add a " " to each element of variable_hash, then output each modified element.
+This woudl add a " " (a space) to each element of variable_hash, then output each modified element.
 By the way, you can totally do stuff like that! Add stuff to the end of strings. 
 Other modifiers, like -, *, and /, do NOT work on strings, though.
 variable_hash.each { |trees, pears| puts "#{trees}" }
@@ -340,3 +340,64 @@ The concept of hashes being used to make variables multi-purposed can be more ea
 variable_hash["key"] = "value"
 See here how a certain aspect of the variable_hash variable (a key in its hash) is modified, by setting it equal to a string
 (giving the key a value)
+When defining a new hash, it can be given a default value.
+When a key from the hash is called, but that key doesn't exist within the hash, the default value is returned.
+This is done like so:
+h = Hash.new("nothing here")
+This makes the default value for hash h the string "nothing here". 
+If, for example, we were to run the following line:
+puts h["key"]
+It output the string "nothing here" to the console.
+The .sort_by method is used to sort hashes. It sorts numbers from smallest to biggest. It's syntax can be used like so:
+colors = {"blue" => 3, "green" => 1, "red" => 2}
+colors = colors.sort_by do |color, count|
+  count
+end
+This bit of code first defines the colors hash, then uses the sort_by method to sort the keys in it from largest to smallest,
+according to their value ("count")
+Note also that the .sort_by method is another example of something iterating over a hash.
+The thing to be sorted by (either the key or the value) is the only thing to be placed between the iterator's beginning and the "end" statement.
+Can use the .reverse method on the hash to make it largest to smallest, by the by.
+It should be noted, though, that the sort_by method only returns an array of arrays, each inner array being [key, value]
+Also to note that, since it is impossible to apply .sort_by! to things (note !), cuz...? I guess cuz it only really applies to arrays
+and ahshes and stuff and those don't respond well to !'s? Anyway, because of that, and because, without the !, the sorting is ony
+temporary, it is necessary to set the variable.sort_by piece equal to the variable itself, like is done in the  piece of code
+above (Note the part of colors = colors.sort_by part.
+.reverse does NOT apply to hashes. Does apply to arrays, though!
+The "nil" that sometimes occurs after a program is ran is there because each and every action in Ruby has a return value, and thus,
+the "nil" is the return value of whatever was last in the program (probably a "puts' or somesuch.
+the .gsub method does NOT work with any and all non-letter characters. In ALL of these cases, the variable.gsub action will 
+return nothing.
+This is because, apparentlyu, Ruby considers those characters to be control characters, or... something.
+Point is, to fix these problems, they can be ESCAPED.
+Escaping basically means putting a backslash in front of it! Some examples:
+\?      \.           \"                 \ (This one's an escaped space.)
+Escaping is generally done to tell Ruby (And other languages, cuz I know this is in Python too, at the very least.) that this
+character is meant to be part of a string, and not a command or aything like that.
+the "unless" statement can be used in the same line as an action. .is_a? is a method which returns true if the attached variable or object 
+or whatever is a part of the class attached to the method. Example of both principles as follows:
+  puts "That's not an integer." unless variable.is_a? Integer
+Seems pretty useful. If variable is NOT an integer, then Ruby will print that string. 
+a method is a block of code that can be reused with different inputs.
+This is TOTALLY the same as a method that is called with .
+They are both functions that are done to an object, without typing out all the code for them first. Here, we'll learn how to make
+our own functions!
+The basic syntax of a method is as follows:
+def FOXES(variable)      #header
+  stuff                   #body
+end                       #end
+the header tells ruby that we're beginning the creation of a new method. It includes the def statement, which says we're making a 
+new method, the name of the method (here, it's "FOXES"), and any arguments the method takes.
+The body, which is by convention indented by two spaces (Or one press of TAB), is the part which details what the method actually
+DOES.
+As per many other things, this defining a new method ends with the END statement.
+To call a method in the future, simply type the name of the method. for example, to call the method defined earlier, we'd do this:
+FOXES
+If a method takes arguments, we say it accepts or excepts those arguments (There was prolly MASSIVE arguments about that....)
+The argument is the piece of code put between the parentheses when calling methods.
+The parameter is the variable put between the parentheses when defining methods.
+When defining it, you use the parameter for the purposes of defining the method.
+When calling the method, you'd prollyuse a variable that had something for the method to operate on stored in it. Calling a method with arguments shown below:
+FOXES(Cats?) #Here, Cats? is the argument to the method FOXES
+the parentheses are actually optional, but are still good to have forthe sake of readability.
+
