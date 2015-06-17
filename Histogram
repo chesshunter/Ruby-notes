@@ -1,0 +1,30 @@
+puts "Please kindly tell me a short story. From pages to paragraphs, any length is fine!"
+text = gets.chomp
+#Output to the user, then converting the user's input into a variable to be later manipulated.
+text.gsub!(/8/, "`")
+text.gsub!(/\!/, "`")
+text.gsub!(/\?/, "`")
+text.gsub!(/\ /, "`")
+text.gsub!(/\"/, "`")
+text.gsub!(/\;/, "`")
+text.gsub!(/\:/, "`")
+text.downcase!
+#These lines modify the user's input to make it more readable to the sorting code below. There's prolly a much better way to do this, but I do not know it!
+words = text.split("`")
+#Splits the input into seperate strings, at each `, and thus each mark of punctuation, so that it's possible to treat each individual word separately.
+frequencies = Hash.new(0)
+words.each do |x|
+    frequencies[x] += 1
+end
+#This creates the frequencies hash, and sets it to have a default value of zero, while the words.each looks through the input, and counts up that word's count in the frequencies hash by one.
+frequencies = frequencies.sort_by do |key, value|
+    value
+end
+frequencies.reverse!
+#This sorts the words in the hash from least to most used, then reverses it to most to least used, which seems a lot more handy.
+frequencies.each do |key, value|
+    puts "#{key} #{value}"
+end
+#Finally, this outputs the list of words, with the times each one is used, to the user.
+end
+#Finally, this outputs the list of words, with the times each one is used, to the user.
