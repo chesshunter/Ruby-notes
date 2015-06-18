@@ -400,4 +400,40 @@ When defining it, you use the parameter for the purposes of defining the method.
 When calling the method, you'd prollyuse a variable that had something for the method to operate on stored in it. Calling a method with arguments shown below:
 FOXES(Cats?) #Here, Cats? is the argument to the method FOXES
 the parentheses are actually optional, but are still good to have forthe sake of readability.
+parameters are kinda like nicknames the program gives arguments, because it doesn't know ahead of time the names of those 
+arguments.
+Arguments can be strings, variables, numbers, etc. Parameters, I'm pretty sure, can only be variables which aren't defined.
+A splat argument is used to define a method when we don't know how many arguments will be applied to it! The syntax for that
+is demonstrated by the following example:
+def what_up(greeting, *bros) #Defines the what_up method, with the parameters greeting and bros. However, because of that
+#asterik, bros is a splat argument, and can accept more than one argument!
+  bros.each { |bro| puts "#{greeting}, #{bro}!" } #this line sets up a loop for each and every value of bros, then, for each
+  # Iteration of that loop, outputs the value of greeting, and the value of bro.
+end
+ 
+what_up("What up", "Justin", "Ben", "Kevin Sorbo") #This calls the what_up method, with "What up" as the GREETING argument,
+and everything following as the BROS argument. 
+THere can be only one splat argument in a single method, I think. It would make sense, at least.
+splat arguments should probably be put either first, or last.
+When first, only the last argument is NOT in the splat argument (or the last two if there's two non-splats, three if three non-splats, etc.)
+Similarly, only the first argument is NOT splat if the last parameter is splat.
+Splat arguments, I'm pretty sure, result in arrays being assigned to the splatted parameter.
+The RETURN statement makes it possible to use methods for things other than outputting and stuff. (They still sound pretty useless, though)
+def double(n) #Defines the method, is pretty simple
+  return n * 2 #Makes the value of the method equal to double the argument put into it.
+end
 
+output = double(6) #Sets OUTPUT equal to the value of double when its argument is 6
+the return statement seems pretty simple.
+Code blocks are kinda like nameless methods!
+They can be made with either do and end, or else with curly braces {}
+methods can be applied directly to strings or arrays, as shown in the following:
+abstracting is the process of making complex things simpler. I... I think...
+Sorting is a very common method of doing things in programming, and is one which has many steps and plans already made!
+The .sort method also works on strings! It sorts them alphabetically!
+The combined comparison operator looks like this: <=>
+It returns a -1 if the first item should come before the first (Less) a 0 if they are equal, and a 1 if the first should
+come after the second (More)
+Assignment operators (=): The variable to which something is to be assigned MUST come before the value it is to be assigned.
+So, variable = 5 + 2 works, but 5 + 2 = variable does NOT. From what I can tell, at least.
+This piece of code sorts the array of strings. I'm not sure why.
