@@ -215,9 +215,9 @@ Note, hoewver, that puncutation and such is included with each words, due to the
 Each piece in the array is its own new string.
 Things can be added to strings. For example:
 words = "I hate"
-words = "."
+words = words + "."
 print words
-This would output "I hate." With the addition of the period! Nifty, eh?
+This would output "I hate." Note the addition of the period! Nifty, eh?
 The various loops and such that demand to be ended with "end" work KINDA like parentheses:
 We can put loops inside of one another, BUT we always need as many end parentheses as we have open parentheses
 IE: As many "end"'s as we have things that open loops which demand "end"'s.
@@ -437,3 +437,79 @@ come after the second (More)
 Assignment operators (=): The variable to which something is to be assigned MUST come before the value it is to be assigned.
 So, variable = 5 + 2 works, but 5 + 2 = variable does NOT. From what I can tell, at least.
 This piece of code sorts the array of strings. I'm not sure why.
+A default value for a parameter/argument can be set when defining a method. This is done as so:
+def cats(dogs, oranges=83)
+Here, the default value of oranges is set to 83. This means that, if a second argument isn't assigned, the integer 83 will be used
+in its place.
+This can also work with strings, truth values, integers, etc., as shown below (Does NOT work with variables!):
+def cats(dogs=90, oranges=true) #Here, dogs would default to 90, while oranges would default to TRUE
+If only one argument is assigned, I'm pretty sure it is always assigned to the first parameter. I'm not sure if there's a way
+to change that, but can prolly work around it by assigning the default first argument as the argument (90, in above example)
+Methods and such are good for simplifying programs, because once they are made they can be invoked without putting any more thought
+into how they work!
+Can still iterate over hashes. Still works, and stuff.
+When a variable or statement or somesuch is called, but has no value, it will return the value NIL. This value is NOT false,
+but it is also not true. 
+nil, along with false, are the only two non-true values in Ruby. Everything else is considered true. 
+For example, an if statement paired with the string "bacon" or with the integer 2 would run, while an if statement paired with true
+would also run.
+if "unova" 
+  puts "Run"
+end #This block of code would run.
+Remember that keys in hashes cannot be variables, and so are normally strings!
+When a hash has no default, and a key that does not exist in the hash is called, ti will return the value "nil"
+When a hash has a default in this situation, though, the default value is returned
+The keys in hashes do not HAVE to be strings, though: They can also be symbols! What's a symbol? Keep reading, idiot!
+A key difference between strings and symbols is that, while there can be many strings of the same value, there can only be
+one of a particular symbol at any one time.
+Each example of a string is a different object in Ruby's "mind", while each symbol is the exact same symbol.
+The .object_id method is used to give the object number of something or another. It can be used to tel lwhether or not two things
+are the exact same object. For example:
+puts "string".object_id #9788940
+puts "string".object_id #9788720
+# Note how each string is a different object, while the symbols are just the same symbol placed twice.
+puts symbol:.object_id #320008
+puts symbol:.object_id #320008
+Ctrl + numberkey can be used to change browser tabs in google chrome (Not ruby, but interesting thing I just found out!)
+ctrl + 6, for example, brings you to the sixth tab from the left.
+Variables in ruby cannot BEGIN with numbers, must begin with letters or underscores.
+Symbols must ALWAYS end with a colon (:), and then, with no spaces throughout, the name of the symbol is typed. Some examples:
+your:               _YOURE:                  Yar:                    you're_38:
+symbols can be assigned to variables:       variable = symbol:
+symbols are often used as hash keys in Ruby, because they are constant, and can thus save memory, and they
+can't be changed once created,and are thus faster to run than strings-as-keys
+Remember that there must be a comma after each key-value line when using literal notation to define a hash.
+the .to_s and .to_sym methods can be used to change strings to symbols, and vice-versa.
+the .push method can be used to add things to the end of an array. The syntax for that is as follows:
+array = []
+array.push("STRING")
+After this block of code is ran, the value of the array variable would be ["STRINGS"]
+There are almost always more than one way to do things in Ruby, cuz that's a core philosophy of the language.
+Similarly, there is more than one way to transfer from strings to symbols and back
+The .intern method is exactly the same as the .to_sym method. Hooray?
+The hash syntax using => is sometimes called the Hash Rocket
+However, this syntax has been updated away from, and now the correct syntax looks more like this:
+The colon goes AFTER a symbol, instead of before it
+Also, the hash rocket is no longer required; the key and value have no symbol but space between them.
+new_hash = { one: 1,
+  two: 2,
+  three: 3
+}
+The .select method can be used for a more selective sorting of hashes. For example:
+movie_ratings = {
+  memento: 3,
+  primer: 3.5,
+  the_matrix: 5,
+  truman_show: 4,
+  red_dawn: 1.5,
+  skyfall: 4,
+  alex_cross: 2,
+  uhf: 1,
+  lion_king: 3.5
+}
+good_movies = movie_ratings.select do |move, rating|
+    rating > 3
+end
+The last bit of code sorts through, and onnly returns movies with a rating (value) higher than three. Useful, yeah?
+It is also possible to iterate over ONLY the keys/values of a hash. This is done with the .each_key or .each_value methods
+These methods work just like the .each method, except they only iterate over keys or values, respectively.
