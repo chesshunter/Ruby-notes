@@ -78,7 +78,7 @@ if !(700 == 70) would output to true, whereas something like !true && !true woul
 The latter would be false, because the AND demands that both attached values are true, whereas the NOT attached to the two true's
 makes them false, so the AND outputs to false. Essentially, the NOT operator inverts whatever it is attached to.
 Booleans can be combined and shit with parentheses. The parentheses are applied a little like in math For example:
-(true || false) && (!false || (true && false)) would output to true. Obviously, this sorta thing would also work for number
+(true && false) && (!false || (true && false)) would output to true. Obviously, this sorta thing would also work for number
 expressions and variables and shit, but I'm lazy so I just used true and false. Regardless, this sorta thing is both synctactically true
 and pretty useful for programming, especially if you used variables and shit with it. 
 Example program, features some methods, and if/elsif/else statements
@@ -425,6 +425,9 @@ end
 
 output = double(6) #Sets OUTPUT equal to the value of double when its argument is 6
 the return statement seems pretty simple.
+If the return statement ISN'T used, then the value of the last expression done within the method will be returned.
+So, if for example we want a specific method to do something, but also return a specific thing, we would wanna use the return
+statement. Probably useful for more complex methods and stuff!
 Code blocks are kinda like nameless methods!
 They can be made with either do and end, or else with curly braces {}
 methods can be applied directly to strings or arrays, as shown in the following:
@@ -513,3 +516,75 @@ end
 The last bit of code sorts through, and onnly returns movies with a rating (value) higher than three. Useful, yeah?
 It is also possible to iterate over ONLY the keys/values of a hash. This is done with the .each_key or .each_value methods
 These methods work just like the .each method, except they only iterate over keys or values, respectively.
+the case statement can be used like a more concise if/else statement, like so:
+
+case stuff #Rather than opening with if
+when "thing1" #Each when is like an elsif statement
+  puts "Sure!" 
+when "Oranges" #In this instance, the variable stuff is paired with the case statement
+  puts "NOOOO"
+when "Apples" #Each when checks to see if the stuff variable is equal to each of these strings. 
+  puts "Don't compare those"
+else #If it's equal, then that when's block is done, and the program moves on. If not, then the program just moves on.
+  puts "Nah"
+end #Works pretty similarly to a standard if/else loop. 
+
+The case statement trades a bit of the versatility of if/else loops for a more concise and less wordy syntax.
+the .to_i method turns a string into an integer. How useful! I imagine this would only work for strings that are integers.
+To delete a key/value pair from a hash, simply use the .delete method, as shown below!
+hash_variable.delete(key)
+Ruby is a language that prioritizes the programmer's health and mental capacities and such more than efficiency.
+if and unless can be used directly after statements, sort of as an afterthought. See below:
+puts "four is more than five" unless 4 < 5
+puts "five is more than four" if 5 > 4
+This is called a one-line if statement and is something somewhat unique amongst coding languages!
+There is also the ternary expression, so named because it has three parts:
+A boolean, something to express if that boolean is true, and something to express if it's false. See below:
+thing to be done boolean ? expression 1 : expression 2
+That's a bit confusing, so here's a better example:
+puts 3 > 4 ? "KILL ALL" : "Nah, It's all good"
+In this case, the second string would be printed, because the boolean given is false.
+The case/when statement can be further compacted as well! Thusly, instead of this:
+case language
+when "JS"
+  puts "Websites!"
+when "Python"
+  puts "Science!"
+when "Ruby"
+  puts "Web apps!"
+else
+  puts "I don't know!"
+end
+we can do this!:
+case language
+  when "JS" then puts "Websites!"
+  when "Python" then puts "Science!"
+  when "Ruby" then puts "Web apps!"
+  else puts "I don't know!"
+end
+Note how in the second example, we have to put "then"'s between everything.
+This is a much more compact, compressed form of writing code, which... honestly, I'm not sure if I like:C
+A conditional assinment operator is a thing for when you wanna assign a variable something ONLY if that variable doesn't already have a value
+variable = "STRING"
+variable ||= "STRING???????" # This is the conditional assignment operator!
+In the above case, the variable would remain "STRING", because in the second line, nothing is assigned to it cuuz it already
+has a value! Amazing!
+Because Ruby is lazy, it will stop reading once it knows a thing is false.
+For example, in the following line:
+(true && false) && (!false || (true && false))
+It would stop at the second &&, because it knows that the first parentheses is false, and anything AND'd (the &&) with false is 
+gonna be false, so it just stops paying attention right there! (I'm... not sure where it would EVER be useful to know this...)
+By the way, it's possible to print more than one thing with a single PRINT command. Just do it like the following!
+print variable, " string added after the variable"
+Niiiiiiifty
+.upto and .downto can be used to provide an array and for loop for a certain number of iterations. Confused? That's probably cuz I wrote that sentence badly!
+whatever. Fuck you, reader.
+Anyway, here's a demonstration of those things.
+95.upto(100) do |num|
+  prints num, " " #This would print out the following: "95 96 97 98 99 100"
+See? It provides it's own input, AND the number of iterations, how handy! It's like a self-generating.each loop!
+.downto works in EXACTLY the same way. Except, ya know, downwards.
+They also work on letters!
+"L".upto("P") do |let| #Just make sure to remember to put the letters in strings!
+    puts let
+end
