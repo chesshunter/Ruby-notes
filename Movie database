@@ -27,16 +27,18 @@ when "update" || "update." #Made sure to include any possible results with perio
         rating = gets.chomp.to_i 
         movies[title] = rating
     end
-when "display" || "display." #Displays the selected title, or all titles.
+when "display" || "display."
     puts "Display what, exactly?"
-    display = gets.chomp.downcase
-    if display = "all" || "all titles" || "all movies" || "all entries"
+    display = gets.chomp      #Takes user input
+    case display.downcase
+    when "all" || "all entries" || "all movies" || "all titles" #if request is for a variant of "all", will display all entries
         movies.each do |title, rating|
             puts "#{title}: #{rating}"
         end
-    elsif movies[display.to_sym] != nil
+    end
+    if movies[display.to_sym] != nil   #Otherwise, will display requested entry, or error.
         puts "#{display}"
-        puts movies[display]
+        puts "#{movies[display.to_sym]}"
     else
         puts "Error, entry not found!"
     end
