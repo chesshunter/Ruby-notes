@@ -1,0 +1,53 @@
+movies = {
+    Gravity: 5, #Sample entries
+    We_Bought_a_Zoo: 2.5
+}
+puts "Add, update, display, or delete?"
+choice = gets.chomp #Gets user input from four choices above
+choice.downcase!
+case choice
+when "add" || "add." #These are "or" operators
+    puts "Title?"
+    title = gets.chomp.to_sym
+    puts "Rating?"
+    rating = gets.chomp.to_i
+    if movies[title] = nil #Checks that this key is empty, before adding the rating to it.
+        movies[title] = rating
+        puts "Added! Thank you!"
+    else
+        puts "I'm sorry, that title is already listed! Please try again!" #If the key is already used (IE: Not nil), then an error is output
+    end
+when "update" || "update." #Made sure to include any possible results with periods on the end, cuz I do that sometimes.
+    puts "Title to be updated?"
+    title = gets.chomp.to_sym #This block right here updates the value for a key/title that already exists
+    if movies[title] = nil
+        puts "I'm sorry, that title does not exist. Please add this title before modifying it!"
+    else
+        puts "New rating?"
+        rating = gets.chomp.to_i 
+        movies[title] = rating
+    end
+when "display" || "display." #Displays the selected title, or all titles.
+    puts "Display what, exactly?"
+    display = gets.chomp.downcase
+    if display = "all" || "all titles" || "all movies" || "all entries"
+        movies.each do |title, rating|
+            puts "#{title}: #{rating}"
+        end
+    elsif movies[display.to_sym] != nil
+        puts "#{display}"
+        puts movies[display]
+    else
+        puts "Error, entry not found!"
+    end
+when "delete" || "delete." #Deletes the selected file
+    puts "Title?"
+    title = gets.chomp.to_sym
+    if movies[title] = nil
+        puts "That title already does not exist!"
+    else
+        movies.delete(title)
+    end
+else 
+    puts "Error!"
+end
