@@ -1,5 +1,6 @@
 .reverse, .upcase, .downcase are all methods, have pretty self-evident meanings. As is .capitalize
 methods are things done to strings ("This is a string"), and are invoked by putting a . after a string
+Ruby-doc.org is an immensely useful website. It's basically like a dictionary for all the methods and ommands and such!
 using a method on a variable containing a string is equally valid (variable = "string", variable.method)
 variables are defined in a pretty basic manner: variable = "string", integer, or (other variables?) (something else? don't remember third thing)
 "gets" command receives input from user. Can be string or integer
@@ -492,7 +493,6 @@ Similarly, there is more than one way to transfer from strings to symbols and ba
 The .intern method is exactly the same as the .to_sym method. Hooray?
 The hash syntax using => is sometimes called the Hash Rocket
 However, this syntax has been updated away from, and now the correct syntax looks more like this:
-The colon goes AFTER a symbol, instead of before it
 Also, the hash rocket is no longer required; the key and value have no symbol but space between them.
 new_hash = { one: 1,
   two: 2,
@@ -500,20 +500,20 @@ new_hash = { one: 1,
 }
 The .select method can be used for a more selective sorting of hashes. For example:
 movie_ratings = {
-  memento: 3,
-  primer: 3.5,
-  the_matrix: 5,
-  truman_show: 4,
-  red_dawn: 1.5,
-  skyfall: 4,
-  alex_cross: 2,
-  uhf: 1,
-  lion_king: 3.5
+  :memento 3,
+  :primer 3.5,
+  :the_matrix 5,
+  :truman_show 4,
+  :red_dawn 1.5,
+  :skyfall 4,
+  :alex_cross 2,
+  :uhf: 1,
+  :lion_king 3.5
 }
 good_movies = movie_ratings.select do |move, rating|
     rating > 3
 end
-The last bit of code sorts through, and onnly returns movies with a rating (value) higher than three. Useful, yeah?
+The last bit of code sorts through, and only returns movies with a rating (value) higher than three. Useful, yeah?
 It is also possible to iterate over ONLY the keys/values of a hash. This is done with the .each_key or .each_value methods
 These methods work just like the .each method, except they only iterate over keys or values, respectively.
 the case statement can be used like a more concise if/else statement, like so:
@@ -523,7 +523,7 @@ when "thing1" #Each when is like an elsif statement
   puts "Sure!" 
 when "Oranges" #In this instance, the variable stuff is paired with the case statement
   puts "NOOOO"
-when "Apples" #Each when checks to see if the stuff variable is equal to each of these strings. 
+when "Apples" #Each WHEN checks to see if the stuff variable is equal to each of these strings. 
   puts "Don't compare those"
 else #If it's equal, then that when's block is done, and the program moves on. If not, then the program just moves on.
   puts "Nah"
@@ -540,7 +540,7 @@ puts "five is more than four" if 5 > 4
 This is called a one-line if statement and is something somewhat unique amongst coding languages!
 There is also the ternary expression, so named because it has three parts:
 A boolean, something to express if that boolean is true, and something to express if it's false. See below:
-thing to be done boolean ? expression 1 : expression 2
+thing to be done  boolean ? expression 1 : expression 2
 That's a bit confusing, so here's a better example:
 puts 3 > 4 ? "KILL ALL" : "Nah, It's all good"
 In this case, the second string would be printed, because the boolean given is false.
@@ -564,7 +564,7 @@ case language
 end
 Note how in the second example, we have to put "then"'s between everything.
 This is a much more compact, compressed form of writing code, which... honestly, I'm not sure if I like:C
-A conditional assinment operator is a thing for when you wanna assign a variable something ONLY if that variable doesn't already have a value
+A conditional assignment operator is a thing for when you wanna assign a variable something ONLY if that variable doesn't already have a value
 variable = "STRING"
 variable ||= "STRING???????" # This is the conditional assignment operator!
 In the above case, the variable would remain "STRING", because in the second line, nothing is assigned to it cuuz it already
@@ -588,3 +588,132 @@ They also work on letters!
 "L".upto("P") do |let| #Just make sure to remember to put the letters in strings!
     puts let
 end
+The .respond_to? method can be used to check if an object will accept a given method. For example:
+age = 26 #Defining a variable
+age.respond_to?(:to_sym) #Note how the method tested is in parentheses, and has a colon preceding it.)
+This would return a value of false, because the .to_sym method can't be applied to integers.
+[1, 2, 3].respond_to?(:push)
+This would return true, because arrays can have the .push method applied to them.
+This would be useful for sorting input depending on what type of input it is!
+the .next method returns the integer directly after the integer it's called on.
+So 5.next would return 6
+concantenation operator (<<) (also known as "the shovel") can be used in the place of the .push method. See below:
+[1, 2, 3, 4] << 5 # Resulting in [1, 2, 3, 4, 5]
+It also works on strings, unlike the actual .push method! This can replace the method of string_variable + "string"
+cap = "Never"
+cap << " again" # Resulting in cap == "Never again"
+Can use this sort of thing to place variables in strings, as well.
+drink = orange_juice:
+puts "I love " << drink.to_s.gsub(/_/, " ") << " very much!"
+Generally, it's much better to use string interpolation (that thing with #{}), rather than this method, because this method is,
+honestly, pretty stupid?
+Refactoring code is making it structured better or prettier, but not changing how it functions
+the .nil? method returns true if the object it is attached to has a value of nil
+Notes on using ruby well and good and stuff!:
+Always use << instead of .push
+Where possible use "integer.times" rather than for loops
+Where possible, use one-line if/unless structures Of course, where there is anything beyond a conditional "Do this if this", 
+sort of thing, this is impossible, and thus multi-line structures must be used.
+The colon of a symbol goes BEFORE the symbol's name.
+:correct              :incorrect
+The proper indentation for a single indentation is TWO SPACES. Not tab, for whatever reason.
+A ruby block is basically just some code that can be executed.
+They can be combined with methods like .each or .times to exectute them for each element in a collection, and stuff like that.
+Basically, a block is just a piece of code?
+.collect is a method very similar to .each
+Both of them can execute a block of code for each element in the collection they're attached to.
+.collect, however, executes a block of code on each element of the collection, then returns an array made up of the output of 
+the block of code.
+This is not QUITE the same as .each, which simply executes the block of code
+Both of them use the current element of the collection as an argument.
+.collect returns a copy of the original collection it's applied to.
+However, .collect! can be used to modify the original array.
+fibs = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+doubled_fibs = fibs.collect {|x| x * 2} # For each element it is passed, it doubles the element then returns the result.
+A BLOCK IS ANY BIT OF CODE THAT IS BETWEEN {} OR DO... END. ANY BLOCK THAT REQUIRES THOSE BITS IS A METHOD THAT REQUIRES
+A BLOCK TO BE ATTACHED TO IT.
+So... some methods accept blocks, because they have a method for passing control from the method to the block.
+This can be built into methods we define using the YIELD statement. 
+def block_test #Here, we define the method. This one has no parameters, and doesn't call for an argument.
+  puts "Yielding to the block..." #Right here, the control is with the method. The code being executed is that which is defined
+                                  in the method.
+  yield #Here, with the yield statement, the code being executed is instead that of the block attached to the method.
+  puts "We're back in the method!" #the yield ends with the block of code's execution being done. 
+end
+
+block_test { puts ">>> We're in the block!" } #Here we're calling the method, and attaching a block of code to it.
+block_test do
+  puts ">>> We're in the block!"
+end  # This would also work, as it does the same thing, in attaching  the block as we're calling the method.
+Yields can be put into methods with arguments already given, as shown below:
+def yield_name(name) # Again, defining the method, this time calling for an argument
+  yield("Kim") #Instead of using the argument provided when calling the method, this line uses the block of code attached when
+  calling the method, but uses its own argument.
+  puts "In between the yields!" #Control here is back with the method 
+  yield(name) #Here the block of code attached to the method is applied, but with the argument provided when calling the method,
+  #because this yield has the parameter in it (name, rather than "Kim", the former accepting the argument provided)
+  #The NAME bit is a place for the argument provided when calling the method goes! If there is no NAME spot, then the argument will do nothing!
+  puts "Block complete! Back in the method." #Now the method is back in control, as the blocks have all ended 
+end
+
+yield_name("Eric") { |n| puts "My name is #{n}." }
+In a way, the yield statement is kind of like the parameters when defining a method.
+The parameters accept arguments attached when calling the method, while yield's accept blocks attached when calling the method
+Almost everything in Ruby is an object: strings, hashes, variables, etc.
+I'm seriuos, ALMOST EVERYTHING
+Blocks aren't, though.
+Objects can be saved to variables
+Since blocks aren't objects, they can't be saved to variables!
+To work around this, we can use PROCS.
+procs are useful when we'll need a block of code many times, because then we don't have to type it out each time!
+procs are essentially saved blocks.
+procs can be called with Proc.new, kinda like hashes!
+Once we've done that, we can pass that proc on to a method that would normally accept blocks (and, I think, anywhere that a 
+block would normally go.
+a proc replaces a block of code, which is the code inside a {} or do...end that is usually attached to methods and such things
+The .map and .collect methods are exactly the same.
+Using & on a proc turns it into a block, which would be used any time we applied a proc to a method that normally would call for a block
+the .floor method rounds down a float (a number with a decimal)
+group_1 = [4.1, 5.5, 3.2, 3.3, 6.1, 3.9, 4.7] #Various groups, to be sorted through such that the only numbers remaining 
+group_2 = [7.0, 3.8, 6.2, 6.1, 4.4, 4.9, 3.0] #Are those greater than 4
+group_3 = [5.5, 5.1, 3.9, 4.3, 4.9, 3.2, 3.2]
+
+over_4_feet = Proc.new do |height| #This defines our proc, which is just going to be the block of code attached to the methods below
+    height >= 4
+end #A proc is not like a method, it is just parameters and code and arguments and such to be attached to a method.
+
+can_ride_1 = group_1.select(&over_4_feet) #Here we apply our proc, which will replace the blocks that normally go here.
+can_ride_2 = group_2.select(&over_4_feet)
+can_ride_3 = group_3.select(&over_4_feet)
+procs can be called directly with the .call method.
+A proc doesn't necessarily have to be an input, output, or anything like that, it's just a saved bit of code.
+lambdas are pretty similar to procs.
+A lambda is just about hte same as a proc.
+writing this down here because it took me a while to understand:
+def lambda_demo(a_lambda) #defines method, and sets a parameter as a_lambda
+  puts "I'm the method!" #Just puts the string, simple
+  a_lambda.call #applies the .call method to whatever is attached to the method as an argument when it's called.
+end
+
+lambda_demo(lambda { puts "I'm the lambda!" }) #Calls the method, using the lambda in {} as the argument.
+Differences between lambdas and procs:
+lambdas check the number of arguments given to them, and return an error if they don't receive the right amount.
+Procs ignore any additional arguments, and assign nil to any that are missing.
+Procs don't return control to the method after they are executed, and return their stuff directly to the console or whatever
+Lambdas return control to the method after they are executed, and return their stuff into the method they're in.
+def batman_ironman_proc
+  victor = Proc.new { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!" #Returns "Batman will win", because that is the last thing the method returned, cuz method didn't regain
+  #control after the proc
+end
+puts batman_ironman_proc
+def batman_ironman_lambda
+  victor = lambda { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!" #Returns "Iron Man will win", because the lambda returns control to the method, and so this string is the
+  #Last thing the method returns.
+end
+puts batman_ironman_lambda
+Names for things that Ruby will recognize (such as Symbol, Integer, Object, etc.) Must be capitalized!
+The .select method returns the element it is on IF the parameters attached to .select are true for that element.
