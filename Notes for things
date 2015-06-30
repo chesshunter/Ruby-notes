@@ -717,3 +717,125 @@ end
 puts batman_ironman_lambda
 Names for things that Ruby will recognize (such as Symbol, Integer, Object, etc.) Must be capitalized!
 The .select method returns the element it is on IF the parameters attached to .select are true for that element.
+Each object has values and methods, and those values and other things can be manipulated using methods called on that object.
+For example, in "Matz".length, the string has a length value of 4, which is called using the .length method.
+This string is a member of the String class. 
+Each object is a member of a class.
+A class is a way of organizing objects so that they have similar attributes and methods.
+Basic defining of a class syntax only involves the statement to define the class, and new class's name.
+Generally, class names are capitalized, and do ThingsLikeThis instead of using Underscores_Like_this
+The syntax for defining a new class are as follows:
+class ClassName #Makes the new class, with the name ClassName
+  #Class magic goes in here!
+end
+Often, defining a class will begin with the initialize method, which is a way of, well, initializing each object in the class
+when it is created.
+This initialize method must be defined just like a regular method (I'll be including an example class defining later, to summarize
+all this stuff. Hopefully that will help!)
+The code "meat" of defining a method or class or whatever is called the "body". The body is basically everything between the 
+statement that starts defining the thing, and the END statement.
+In ruby, we use @ before a variable to signify that it's an instance variable.
+An instance variable is one that is attached to each instance of the class (I guess each object that is a member of the class?)
+This is so that, every time we tell Ruby to make a new object of the class, it has to have a value for that variable.
+This is where the values of an object in a particular class come from!
+Whenever a new object of the class is made, the initialize method is run on it, giving it various values and stuff,using
+input provided when the object is created.
+To create a new object of a class, call .new on the class name, with arguments for the values and such. (Classname.new(values))
+This will be in the example provided below. It should be pretty easy to see!
+objects in classes should probably be stored in variables, or else there's no real point in creating the object in the first place!
+The scope of a variable is the contexts in which it is visible to the program.
+$Global variables are available everywhere
+local variables are only available to certain methods
+@@Class variables are members of a certain class.
+@Instance variables are only available to particular instances of a class
+The same restrictions and names also apply to methods!
+variables made outside of classes and such are already global variables.
+Variables can be made global inside of classes using $
+In the following example:
+class MyClass #The class is defined, and that which follows until end is a part of the class
+  my_variable = "Hello!" #A variable is defined as a class variable, as it is defined in a class.
+end
+
+puts my_variable #Since it is a class variable, it cannot be reached by the program outside of the class.
+This dilemna could be worked around by defining my_variable as $my_variable, thus making it a global variable, or else defining
+it outside of the class. If using $, would have to add the $ when calling it as well, as with: puts $my_variable
+Global variables can be modified from anywhere in the program, and thus are not an amazing idea usually.
+Better to create variables with limited scope that can only be modified from a few places! (Why?)
+Because class variables are shared throughout the class, and not limited to specific instances/objects of the class, they
+can be used to do things more general, such as tracking how many instances of a specific class there are.
+The entire body of a class is not executed each time an object of the class is created, only the methods within the body
+of the class, such as initialize and whatever else you put in there.
+This isn't the full class example, just /A/ class example, that's really confusing so I'm putting it here to understand it better
+class Person #Defines the PERSON class
+  @@people_count = 0 #Sets the @@person_count (a class variable) equal to zero. This line is only run during the beginning of 
+                     #The program, and thus doesn't reset the count each time a Person object is defined.
+  
+  def initialize(name) #The initialize method, which assigns a name value to each object in the Person class.
+# Since this method is run each time a Person object is created, it is the best place to put an incrementor for each time an object is created.
+    @name = name
+    @@people_count += 1 #This incremements the @@People_count variable by one each time a Person object is created.
+  end
+  
+  def self.number_of_instances #This creates the .number_of_instances method, which can be called on the class itself, I think.
+    return @@people_count #When this method is called, it returns the @@people_count method.
+  end #I'm not ENTIRELY sure about everything on this self thing that the method is called on, but I'll write down what self is 
+  #Below.
+  
+end
+
+matz = Person.new("Yukihiro") #These two lines create two Person objects, running the initialize method twice with the provided arguments.
+dhh = Person.new("David")
+
+puts "Number of Person instances: #{Person.number_of_instances}" #This outputs the given string, along with the value returned
+#by calling the .number_of_instances method on the Person class.
+
+Self is an object that is whatever the current or default object accessible to the program is. 
+So, for example, if self is called within a the body of a class, then self will be equal to that class.
+Here's a link to more! http://rubylearning.com/satishtalim/ruby_self.html
+Inheritance is when a class takes attributes and values from another class.
+Inheritance is often used to express a relationship where one thing is part of another thing/group.
+For example, a fox is a mammal, so the fox class should inherit from the mammal class.
+When defining a new object of a class, initialize is the ONLY method that runs automatically. Other methods of the class must
+be called manually.
+class ApplicationError #The ApplicationError class is defined
+  def display_error #The display_error method is defined as one which one which is part of the ApplicationError class.
+    puts "Error! Error!"
+  end
+end
+
+class SuperBadError < ApplicationError #The SuperBadError class is defined, and defined as inheriting from ApplicationError
+end #How to make a class inherit from more than one class?
+
+err = SuperBadError.new #Since the SuperBadError class inherits from ApplicationError, it contains the display_error method!
+err.display_error
+If a class inherits from another one, and the inheriting class defines a method that has the same name as one in the class
+inherited from, then the inheritor will override the method, making the method used on the inheriting class use the newly defined
+code body.
+class Creature
+  def fight #Defining a method!
+    return "Punch to the chops!"
+  end
+end
+
+class Dragon < Creature
+    def fight #Defining the same method, with a different code body.
+        return "Breathes Fire!"
+    end
+end
+In this example, calling Creature_object.fight would return "Punch to the chops!", whereas Dragon_object.fight would return
+"Breathes Fire!"
+The inheriting class is also called the subclass or child
+The inherited from class is called the superclass, or parent.
+If, for example, we wanted to use the overwritten method as a part of the new one, we could do the following:
+class Dragon < Creature
+    def fight
+        puts "Instead of breathing fire..."
+        super #The super statement calls the original method's body, running it at this place in the new method.
+    end
+end
+Some languages allow a class to inherit from multiple other classes, something called multiple inheritance.
+Ruby doesn't allow that, because it's dumb, but certain aspects of other classes can be incorporated into newer ones.
+Oh, also, putting a semi-colon can replace starting a new line. So, for example, if we wanted to make an empty class, the line
+class NewClass; end
+Would do that exact thing, in only one line!
+Alright, can feel myself caring less and less about these notes as time goes on, so Imma end it for tonight.
