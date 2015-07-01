@@ -839,3 +839,53 @@ Oh, also, putting a semi-colon can replace starting a new line. So, for example,
 class NewClass; end
 Would do that exact thing, in only one line!
 Alright, can feel myself caring less and less about these notes as time goes on, so Imma end it for tonight.
+Alright, new day! More notes! Let's DO this!
+Oh, in case I wasn't clear, here's how to make a new object in a certain class!
+variable = ClassName.new(arguments)
+Here, we create a new object in the ClassName class, with arguments provided for the initialize method. Then, that object
+is stored in the variable! Easy, huh?
+A very, VERY basic class example:
+class Message #Class is defined
+    @@messages_sent = 0 #A variable is set to zero
+    def initialize(from, to)#initialize method calls for two arguments, which are stored in the values of each instance
+        @from = from
+        @to = to
+        @@messages_sent += 1 #Each instance created increments the variable by one, meaning that the number of instances created is counted.
+    end
+end
+my_message = Message.new("Jesus", "God") #Message is created, with two arguments, both of them strings.
+#Because of these arguments, the from and to values for this Message instance will be the given strings.
+ 
+class Email < Message #A new class is created, inheriting from the earlier one.
+    def initialize(from, to) #This initialize method would normally overwrite the one inherited from Message.
+        super #However, since it's code body is super, it uses the same code body as the parent class's initialize method.
+    end
+end
+Time.new returns the current time of the computer running the program.
+Most of the methods so far have been instance methods, which act only on a particular object. 
+Class methods are also a thing, and they belong to the class itself, not a particular instance of it.
+Class methods, so far as I can tell, are mostly important because they can access class variables and such?
+Here's another example of a class, cuz fuck you.
+class Computer #Defines the new class, beginning the whoooole process.
+    @@users = Hash.new #Sets up the class to be able to store any instances created in a separate hash.
+   
+    def initialize(username, password) #Initialize method, which calls for a username and password key/value
+        @username = username
+        @password = password
+        @@users[username] = password #Stores the password of a user under their username
+        @files = Hash.new #Allows the program to store the files of a specific user in a separate hash.
+    end
+    
+    def create(filename) #Creates a new method, which can only be used on instances of Computer
+        time = Time.now #stores the current date and time 
+        @files[filename] = time
+        puts "#{filename} was created at #{time} by #{@username}"
+    end
+    
+    def Computer.get_users
+        return @@users
+    end
+end
+With instance variables and new classes, there is no method or anything to call up any of the instance variable values for a given
+instance of a class. To that end, methods must be defined in the class which will allow instance values to be called up, 
+and thus used.
