@@ -876,16 +876,98 @@ class Computer #Defines the new class, beginning the whoooole process.
         @files = Hash.new #Allows the program to store the files of a specific user in a separate hash.
     end
     
-    def create(filename) #Creates a new method, which can only be used on instances of Computer
-        time = Time.now #stores the current date and time 
-        @files[filename] = time
-        puts "#{filename} was created at #{time} by #{@username}"
+    def create(filename) #Creates a new method, which can only be used on instances of Computer. Calls for a filename argument.
+        time = Time.now #stores the current date and time in the time variable.
+        @files[filename] = time #stores the time variable as the value in the files hash, under the filename key.
+        puts "#{filename} was created at #{time} by #{@username}" #puts information on the file created.
     end
     
-    def Computer.get_users
-        return @@users
+    def Computer.get_users #Defines the .get_users method, which when called returns all of the instances of the Computer class.
+        return @@users #This is marked with @@, as it is part of the variable's name, due to it being a class variable.
+    end
+    
+    def files #defines the files instance method, which, when called on an object of the Computer class, outputs all files
+    #attached to that instance/computer
+      puts @files
     end
 end
+
+my_computer = Computer.new(:user, :jesus) #Defines a new object of the computer class, and stores it in the variable my_computer
+Computer.get_users #Runs the computer.get_users class method, which is defined above.
 With instance variables and new classes, there is no method or anything to call up any of the instance variable values for a given
 instance of a class. To that end, methods must be defined in the class which will allow instance values to be called up, 
 and thus used.
+methods of classes can be marked as public or private.
+public methods can be used outside of the class, whereas private ones cannot be (So where CAN they be used..?)
+Attempting to call a private method outside of the class will lead to an error.
+to mark methods as public/private, put either word in the body of the class body, and everything after it will be private/public,
+until the end of the class body. 
+Every method in ruby is public by default.
+Private methods are ones which can't be called by explicit receivers. (whazzat?)
+a receiver is the object on which a method is called.
+In variable.length, VARIABLE is the receiver on which the length method is called.
+In order to access private methods/information, it is necessary to make public methods which are capable of reaching them.
+This seperates the private implementation from the public interface. (What?)
+Ruby needs methods to access attributes of objects.
+attr_reader and attr_writer are shorthand ways to add methods to classes. Each of them has a 1-to-1 translation with a short bit of code
+attr_reader :blue and attr_reader "blue" both translate exactly to the following bit of code:
+def blue
+  @blue
+end
+if we ran this bit of code on an object, it would return that object's @blue value.
+attr_writer :iris and attr_writer "iris" both translate directly to the following bit of code:
+def iris=(value)
+  @iris = value
+end
+if we ran this method on an object, it would change that object's @blue value to the provided argument.
+the equals sign next to the attr_writer bit IS part of the method name, and is a Ruby convention for saying that a method
+sets a value.
+The instance values read/written by each method are dependent on the symbol/string attached to the method shorthand.
+So, attr_writer :bling would change the instance's @bling value, whereas attr_reader "mouse" would return the instance's @mouse value
+To calling the methods made by attr_reader and attr_writer, it is the exact same process as calling the methods they are shorthand
+for, working much like the length method built into Ruby.
+attr_reader :read would be called with object_variable.read while attr_writer "kill" would be called with object_variable.kill=(argument)
+attr_accessor combines attr_reader and attr_writer, literally just combining the two of them into one shorthand.
+So, attr_accessor makes BOTH of the code bodies that attr_reader and attr_writer are equivalent to.
+Thus, if attr_accessor :orbs were part of a class, we could do object.orbs, returning the object's orbs value, or we could do
+object.orbs=("not orbs"), changing the object's orbs value to something else.
+modules are kinda like classes, except that they can't have objects, and don't accept subclasses/inheritors.
+modules are basically places to define methods and constants and such, and then we can later call up those modules/methods,
+and use them, without putting them back in the interpretor.
+module name conventions are similar to class's, CapitalizeEachWordNoUnderscores.
+They are also defined in much the same way as classes:
+module ModuleName
+  CONSTANT = constant_value #Constants can be strings, integers, basically everything that can be stored in variables, I think.
+end
+pre-existing modules can be called into single programs, but we can also make our own.
+constants are things in modules that don't really change. Their naming conventions are ALL_CAPS_WITH_UNDERSCORES
+constants CAN be changed, but Ruby will warn you before it will actually change them.
+defining constants uses the same syntax as defining variables, but since constants are defined in modules, which don't have variables,
+this is mostly okay.
+Constants with the same name but different modules will be kept separate by Ruby.
+modules are basically a way to store information in named spaces (like variables, kinda, but bigger in scope.)
+So, for example, Math::PI and Circles::PI are seperate entities in the mind of Ruby. (these are examples of calling constants
+from modules.
+the double-colon is a way to tell Ruby where we're looking for information. It's called the scope resolution operator.
+So, for example, Math::PI will return 3.141592653589793, the value stored in the Math module for that constant.
+Some modules are already present in the interpreter/program, such as Math, while others must be called in specifically.
+to call in a module, use the following syntax:
+require 'module'
+modules can be included in classes, meaning that class will have access to all the methods and constants that that module has.
+Basically, this is the same as inheriting the module.
+This is done by placing include ModuleName in the body of the class.
+including a module and all its stuff in a class is called a mixin.
+Mixins allow customization and modifcation of classes without having to write the same code over and over.
+the rand(integer) statement returns a random number in the range from 0 to the number provided as an argument. Handy!
+using mixins, it is possible to kinda simulate multiple inheritance(a class inheriting from multiple other classes)
+by using EXTEND  rather than INCLUDE, the module's methods and such are made into CLASS methods, rather than instance methods,
+meaning they can be used on the class itself rather than on instances of it.
+class methods are done on the class itself, rather than on specific instances of it.
+the syntax to call a class method is as follows:
+ClassName.methodname
+The syntax to DEFINE a class method is:
+class Classname
+  #Other bullshit, initialize method and all that shit, class methods don't actually have to be last but this one IS
+  def Classname.method
+    #Body
+  end
