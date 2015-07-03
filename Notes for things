@@ -1,0 +1,973 @@
+.reverse, .upcase, .downcase are all methods, have pretty self-evident meanings. As is .capitalize
+methods are things done to strings ("This is a string"), and are invoked by putting a . after a string
+Ruby-doc.org is an immensely useful website. It's basically like a dictionary for all the methods and ommands and such!
+using a method on a variable containing a string is equally valid (variable = "string", variable.method)
+variables are defined in a pretty basic manner: variable = "string", integer, or (other variables?) (something else? don't remember third thing)
+"gets" command receives input from user. Can be string or integer
+Ruby automatically inserts new line after each bit of input. .chomps is a method which removes that.
+gets does not need an output to the user attached to it. Does probably need to be attached to avariable, though.
+That attaching of "gets" to a variable means that the user's input is attached to avariable and can then be used.
+Since gets is a command, not a variable in and of itself, using the same "gets.chomp" thing in a program multiple times
+will not lead to its output being saved to the same variable, or anything like that.
+Input for the gets.chomp will be saved in the output directly where the gets.chomp is. 
+This means that, should a prints be used to provide a question for the user, the gets.chomp will be saved right after the question
+whereas, if puts is used, the input will be saved in the line AFTER the question
+If a variable being saved is the last line of a program, then the variable's value will be the last piece of the output, whether
+a command such as puts or print is used or not.
+"Ruby will recognize paired "quotation marks" in a string as not ending the string". Thus, that whole sentence would be one string.
+string interpolation: putting the command (or whatever) #{variable} into a string will make that command be replaced by the 
+value of that variable. Methods can be applied to the variable/string within the {}
+So "I ate a #{food}", where food = ham, will result in the string being "I ate a ham"
+can make variables equal to modified versions of other variables. Example in next line
+variable2 = variable1.capitalize (Other methods are, obviously, applicable)
+Adding an exclamation mark to a method, then applying it to a variable (variable.method!) modifies the variable itself.
+Apparently, only addingthe method itself to a variable only changes the variable for that operation.
+exclamation-marked methods, if they are applied to a variable that already follows what the method does, such as variable = "SSS"
+, then variable.upcase! (upcase makes a variable all-caps, variable was already all caps), sometimes seems to 
+results in the variable being null The ENVIRONMENT is the collection of all variables in the program and all their values, at a given time.
+Control flow means having different outcomes based on differences in the environment.
+If is a statement that takes an expression (something that means something, like an integer, true/false, or a variable)
+If that expression is true, whether by being "true", or by confirming a boolean operation, such as if integer = 4, where integer = 4
+Ruby doesn't care about whitespace, meaning that spaces and such for indentation don't actually matter. 
+That said, indenting stuff to mark it as part of another operation is a good habit, cuz it lets other people see what's going on easier.
+"if" operations demand that you use "==" for "is equal to". Other than that, boolean operators seem to be used normally
+"Equal to or less than" and vice versa are done with "</>" then "=". So: "<=" and ">="
+"if" operations don't need a "then" statement after them to do things if they're true. So:
+if value == true
+  print "this is an example, it can be things other than printing."
+end
+works perfectly fine. 
+That said, Ruby DOES demand that you put a "end" after your if operation is over. After it's ENTIRELY over, including all "else"'s and shit
+"else" is considered true if NO other boolean operators in the operation equal out to true.
+Standard Ruby procedure is to indent after each boolean statement. As seen below.
+So, in the following, else is considered true, and its stuff would be done.
+value = false
+if value == true
+  print "This scenario does not come to fruition"
+else 
+  print "This one does, however, as the "if" statement does not."
+end
+values, integers, variables, etc. can be set equal to strings, integers, or truth statements, which will then make the if/else/whatever
+statements true/false themselves. There are no other options than true/false for the result, as that's how binary computing works
+"elsif" is a statement meaning "else, if". Hence, it acts like a combination of "else" and "if". 
+if the initial "elsif" command is false, then the "elsif" is checked next, and, if true, its stuff is done
+Each of these example things is called an "if/else statement". This is because these statements begin with "if" and end with "else". Complicated shit.
+value = maybe
+if value == true
+  print "value is true" 
+elsif value == maybe
+  print "value... MIGHT be true?"
+else 
+  print "value is certainly not true"
+end
+An infinite number of elsif statements can be added to a single if/else statement.
+The "unless" statement is essentially the "if" statement, but counts as true if the attached value is false. For example:
+unless 4 > 5
+  puts "since 4 < 5, the unless statement outputs to true, and this is printed"
+end
+!= still means "is not equal to". == still means "is equal to"
+variables can be set equal to true/false values
+Ruby also uses boolean operators, which are and (&&), not (!), and or (||)
+the "or" symbol (||) is just above enter, on the same key as the backslash (\)
+and is true ONLY if both attached values are true
+not is true ONLY if the attached value is not true
+or is true if one OR both of the attached values is true. This is called an INCLUSIVE OR.
+"**" is basically the exponent thing. It makes exponents happen. has kinda a weird syntax So "2**3 == 8" is true.
+Boolean operators are invoked like so: "if true && 2 == 2" would be true, and thus that if's stuff would be done.
+Except for not, which is invoked differently, as shown below:
+if !(700 == 70) would output to true, whereas something like !true && !true would output to false
+The latter would be false, because the AND demands that both attached values are true, whereas the NOT attached to the two true's
+makes them false, so the AND outputs to false. Essentially, the NOT operator inverts whatever it is attached to.
+Booleans can be combined and shit with parentheses. The parentheses are applied a little like in math For example:
+(true && false) && (!false || (true && false)) would output to true. Obviously, this sorta thing would also work for number
+expressions and variables and shit, but I'm lazy so I just used true and false. Regardless, this sorta thing is both synctactically true
+and pretty useful for programming, especially if you used variables and shit with it. 
+Example program, features some methods, and if/elsif/else statements
+print "What do you think is most important in life? Money, happiness, or others?"
+choice = gets.chomp
+if choice.capitalize == "Money"
+    puts "Your money and your riches will be useless when the time comes"
+elsif choice.capitalize == "Happiness"
+    puts "What use is happiness when it is all cut short without a care for you?"
+elsif choice.capitalize == "Others" 
+    puts "They will abandon you when you need them most"
+elsif choice.capitalize == "Death"
+    puts "Good."
+else 
+    puts "You are a fool even more than the rest. Do not pretend your fencesitting will save you. No, it will doom you just the same."
+end
+The method "include?" can be invoked on a variable to check if it contains a certain string. See following example
+variable = "string of cheese"
+variable.include? "s"
+since the variable includes the substring "s", IE the letter "s", this would return a value of true. This can be used for words,
+numbers, letters, basically just about anything in a string.
+The .include? method IS case-sensitive. So if the S's in the above string were capital, the method would instead return a false
+When searching a string for certain letters and shit, could apply a .downcase or .upcase to it to get around that?
+the .gsub method can be used to replace bits of strings, as shown below. For it to be permanent, has to have the exclamation mark
+variable = "Kill all peoples"
+variable.gsub!(/s/, "unova")
+This would change variable to "kill all peopleunova". 
+The s, the bit that is substituted, HAS to be in slashes. Not super sure why yet.
+can NOT be any space between the gsub! and the beginning of the parentheses. 
+The bit in the quotation marks there is the substituted bit, what the /'d bit is replaced by.
+Generally, methods ending in "?" in Ruby will return a value of either true or false. For this to be of really any use, they 
+should probably be paired with an if/else statement.
+The "while" statement is used to repeat a loop. 
+"while" checks for a certain condition (more than one? Maybe?), and, while that (those?) conditions (S?) are true, the loop 
+continues running.
+A while loop demands an end statement. Example of a while loop below
+counter = 1
+while counter < 11
+  puts counter
+  counter = counter + 1
+end
+This loop continues running until the counter reaches eleven. I think it would go through this loop 10 times?
+Each time, it would output a single number, counting up, as the counter variable increases by one each time the loop is ran.
+If, say, that "counter = counter + 1" wasn't there, the counter variable would stay at one, and the loop would run infinitely.
+This is called an infinite loop, and will lead to programs crashing.
+The "until" loop is something like a backwards "while" loop: It runs until the condition attached to it is true.
+As shown below, it is almost exactly like an inverse "While" loop:
+i = 0
+until i == 6
+  i += 1
+end
+puts i
+An assignment operators is one which assigns a value to a variable. "=" is an example of an assignment variable.
+Other assignment operators include "+=" "-=" "/=" and "*=". These are all various shorthands of writing variable assignments
+For example: "variable += 4" is exactly the same as "variable = variable + 4", just as "variable *= 2" is the same as "variable = variable * 2"
+The "for" statement is another way of setting up loops, one which doesn't require manually counting up the repetitions.
+The basic syntax for a "for" statement (as I can currently tell) is as so:
+for variable in x..y
+What this does is, it starts variable out at x, no matter what "variable" previously was. then, it runs through the loop a number 
+of times, increasing variable by 1 each time. When variable reaches y, the loop stops. 
+However, the complication in this is that these ranges (the x...y) can be either inclusive or exclusive. 
+EXCLUSIVE means that the last number in the range, y, is not ran. IE, the loop stops when it reaches y.
+However, an INCLUSIVE range would run the loop once variable reached y, then stop.
+Exclusive ranges are made with 3 dots (x...y), while inclusive ones are made with 2 (x..y)
+So, for example, "for variable in 2..4" would run its loop 3 times (2, 3, 4), whereas "for variable in 3...5" would only run
+twice (3, 4). These range things will probably also apply to other things, so keep them in mind.
+"for variable in 1..15" would run 15 times.
+Generally, in Ruby (prolly other languages too), there is more than one way to do things.
+Another way to do things repeatedly in Ruby is iterators.
+the simplest iterator is the "loop {}" command, which invokes the block of code in its spikeparentheses repeatedly.
+So, for example, the line loop {print "kill all"} would print that phrase, infinitely. Basically, using this loop without modification
+is an instant infinite loop
+Luckily, there is a workaround. In RUby, the spiky parentheses (What the FUCK is their name?) ({}) is generally replaceable by 
+the statement "do". This creates a more conventional loop, which can then be closed by "end." For example:
+Thiis would still create an infinite loop, however, so we need to slip the statement "break" in there. 
+Thhis statement, as I and its name hhave implied, breaks loops. It usually is paired with "if" (At least, so far as  Ican tell.)
+So, as an example:
+i = 1
+loop do
+  print "Kill all"
+  break if i > 5
+  i += 1
+end
+This would print "Kill all" until i was greater than five. Unless there's more you can do with it, using loop in this manner
+seems like a shittier and clunkier "while"
+The MODULO operator (caps for emphasis) (%) finds the remainder when a number is divided by another. For example, 
+5 % 2 would be 1, 4 % 2 would be 0, 6 % 3 would be 0, 16 % 5 would be 1, 8 % 3 would be 2, 83 % 4 would be 3, etcetera. 
+Modulo is immensely useful in sorting numbers! For example, ALL even numbers % 2 = 0. 
+The "next" statement skips an iteration of a loop.
+For example, we have the following block of code 
+i = 20
+loop do
+  i -= 1
+  next if i % 2 != 0
+  print "#{i}"
+  break if i <= 0
+end
+This prints out numbers, counting down from twenty. HOWEVER, due to the "next if" statement, it skips odd numbers!
+When i is odd, the next if statement makes the whole loop skip that iteration, and start the next one instead!
+Since ruby runs things from the top-down, it's generally best to put the "next" between the part that counts down (i -= 1)
+and the rest of the loop, or else bad things will prolly happen.
+variables can be set equal to more than one number or string using arrays. See the following.
+array = [1, 3, 5, 7, 9]                 or perhaps: array = [5, 19, 55, 12, 44, 90, -4] array = ["cadswallop", "Dander", "apple"]
+Arrays don't have to be in a particular order, they are just a collection of numbers.
+Another iterator is the .each method, which would seem to be primarily useful when applied on arrays or hashes.
+This method applies something to every part of a variable.
+Its syntax is as follows: variable.each { |item| Thing done to item }
+The |item| piece of that defines each piece of the variable to which .each is applied as a new variable for the purpose 
+of hte .each method.
+As in other cases with {}, they can be replaced in the .each method with "do", as seen below:
+variable.each do |item|
+  Things done to each piece of variable
+end
+With the {}, either only one action can be applied to each piece of the variable, or I don't know how to apply more.
+Either way, the "do" way of things seems to look better and allows for 1+ things applied to each, so maybe go with that?
+another iterator is the .times method. 
+A basic example, showing the basic syntax, follows:
+10.times { print "Kill" }
+This would print the word "kill" ten times to the console. The .times method is something like a more condensed "for" loop.
+Obviously, the "do" statement remains applicable:
+10.times do
+  print "Kill"
+end
+Nifty, huh?
+Today, I think, is gonna be a bit of a light day on the learning. Maybe just a review? I'm not sure.
+Anyway, the .split method can be used to split a string into pieces of an array.
+For example: variable = "This sure is a string, all right."
+variable.split(",")
+This would split the string whenever it saw a comma, leading to an array of ["this sure is a string", " all right."]
+However, we could also do variable,split(" "). This would split it whenever Ruby saw a space, leading to:
+[this, sure, is, a, string,, all, right.] 
+.split isn't a very sophisticated tool, but it is useful at times.
+Note, hoewver, that puncutation and such is included with each words, due to the limited-ness of the method.
+Each piece in the array is its own new string.
+Things can be added to strings. For example:
+words = "I hate"
+words = words + "."
+print words
+This would output "I hate." Note the addition of the period! Nifty, eh?
+The various loops and such that demand to be ended with "end" work KINDA like parentheses:
+We can put loops inside of one another, BUT we always need as many end parentheses as we have open parentheses
+IE: As many "end"'s as we have things that open loops which demand "end"'s.
+In this loop:
+i = 1
+while i < 50 do
+    i += 1
+    print i
+end
+the relative position of the "i += 1" and the "print i" DOES matter. The truth of the while statement is checked THROUGHOUT 
+the loop, not just at the beginning. So, during the fiftieth or something iteration in this format, Ruby would increase i to 51
+note that it is more than fifty, and not print i, meaning that, for the last iteration, i is not printed. This may be important!
+Similarly:
+i = 1
+while i < 50 do
+  print i
+  i += 1
+end
+In this block, on the last iteration, Ruby would print i, THEN increase i to 51, thus ending the loop.
+More things on arrays:
+Each value in an array is called an element.
+Each element in an array gets an index value, as shown below!
+array = [5, 5, 6, 2, 5, 8]
+index    0  1  2  3  4  5
+First element gets index of 0, second of 1, third of 2, and so on.
+Each element in the array can be called specifically using arraytitle[index]
+So, for example, calling array[3] would return the value 2, because 2 is the element in array that has an index of 3 
+This, predictably, also applies for arrays made of strings:
+array = ["string", "STRING", "Strayng", "Stronk"]
+array[3] would return "stronk", because it is the element with an index of 3
+the comma then space after each element of an array isn't necesarry! For example: array = [5,2,1,3,6] is perfectly valid!
+It will still be saved as [5, 2, 1, 3, 6] though, I'm not super sure why?
+arrays can also be elements of arrays! 
+array = [[0,0,0,0],[3,3,3,3],[6,6,6,6],[9,9,9,9]]
+Each element in this array is a different array!
+Putting arrays in an array makes the array multidimensional, cuz it has moredepth. The one above would be considred a two-
+dimensional array, cuz it has two levels of arrays in it. 
+A hash is a collection of key-value pairs. There are similar things in many other languages, such as python and javascript
+The following is the basic syntax of a hash:
+hash_name {
+  key1 => value1,
+  key2 => value2,
+  key3 => value3
+}
+Obviously, this could be extended more or less to make the hash contain more or less keys.
+A hash is something like a smarter opposite of the array: the index is considered the "name" for each element of an array,
+and then the actual given element is the value of that particular index.
+In a hash, each key is manually assigned a value, as is shown below
+hash {
+  "mango" => "good"
+  5 => true
+  true => 5
+}
+As can be seen, each KEY can be strings, numbers, true/false values, many sorts of things. They can NOT be variables, though. 
+So, essentially, the keys of a hash have to be things that Ruby would recognize on their own. The same rules apply for the VALUES
+of these keys!
+to call up these various keys and values and shit, the following syntax is used, similar to that of calling up elements of an array:
+hash[5] #this would return true, because that is what the key 5 is linked to
+hash["mango"] #This, similarly, would return "good", because that's what "mango" is linked to.
+each hash[key] is considered a variable in and of itself. 
+This means that, kinda, the variable attached to a hash kinda is like a multipurpose variable, with different meanings based on
+what's in the []. I guess the same thing would also apply for arrays! Plus you can add to the hash, thus adding to the variable!
+The syntax shown previously for hashes is called "literal notation". It's called that because you are literally manually
+applying values to each key, and setting the hash to a variable.
+Can also make a hash and set it equal to a variable with Hash.new (the hash HAS to be capitalized!)
+this can be applied like so:
+hash_variable = Hash.new
+This sets the variable equal to an empty hash, which is just like setting it equal to an empty curly braces set {}.
+To make that new hash LESS empty, we can do something like this:
+hash_variable["KILL"] = "YES"
+This adds the key "KILL" to the hash, with the value "YES".
+This can be done with any hash, not just empty ones or ones that were made with literal notification!
+When an iterator/loop is applied to a hash or array, this is referred to as ITERATING the array/hash
+This can be done with specific statements, or with methods such as .each.
+For reminders, .each applies something to each element or key in a array/hash, respectively.
+the syntax for .each is as follows:
+variable_array.each { |variable which each element is stored in for the purpose of its iteration in the loop| action done to each element in its iteration of the loop }
+variable_hash.each do |variable to which each key is assigned for its iteration, variable for that key's value|
+  things done to each piece of the variable
+end
+The hash example is an example of using the do statement instead of {}, which makes it look a bit more like a conventional loop.
+That syntax may be a bit... longer than it needs to be, so here's some examples!
+variable_hash.each do |arrays|
+  arrays = arrays + " "
+  puts arrays
+end
+This woudl add a " " (a space) to each element of variable_hash, then output each modified element.
+By the way, you can totally do stuff like that! Add stuff to the end of strings. 
+Other modifiers, like -, *, and /, do NOT work on strings, though.
+variable_hash.each { |trees, pears| puts "#{trees}" }
+This outputs all the keys of variable_hash
+Note how, even though only the keys have anything done to them, both the keys and the values have to be defined for the loop.
+Remember that ANYTHING can be used for the placeholder between the | |
+to access a specific element of a multidimensional array, use the following syntax:
+variable_array[index of the array containing the desired element][index of the desired element in its array]
+To iterate over multidimensional arrays, will need to use more than one .each method!
+For example, the following code puts out all the elements of each array within the variable, after adding "pizazz" to it!
+variable_array = [["string", "internet"], ["online", "universal"], ["KILL", "langrey", "point"]]
+variable_array.each do |x|
+  x.each do |pizazz|
+    pizzazz = pizazz + ", but with pizazz!"
+    puts pizzazz
+  end
+end
+Hashes, I think, can't be multidimensional. Which is prolly good, cuz that'd get confusing... 
+Well, I guess you could prolly put an array in as a value, but I would not care much for that.
+Here's an example of iterating over a hash. It's pretty simple, and quite similar to iterating over an array
+restaurant_menu = {
+  "noodles" => 4,
+  "soup" => 3,
+  "salad" => 2
+}
+
+restaurant_menu.each do |item, price|
+  puts "#{item}: #{price}"
+end
+Note, however, how both the key and the value are defined. Also note that, to print out both pieces of a set, using #{} and putting
+them both in a single string will likely be required.
+The concept of hashes being used to make variables multi-purposed can be more easily seen when adding keys and values to a hash:
+variable_hash["key"] = "value"
+See here how a certain aspect of the variable_hash variable (a key in its hash) is modified, by setting it equal to a string
+(giving the key a value)
+When defining a new hash, it can be given a default value.
+When a key from the hash is called, but that key doesn't exist within the hash, the default value is returned.
+This is done like so:
+h = Hash.new("nothing here")
+This makes the default value for hash h the string "nothing here". 
+If, for example, we were to run the following line:
+puts h["key"]
+It output the string "nothing here" to the console.
+The .sort_by method is used to sort hashes. It sorts numbers from smallest to biggest. It's syntax can be used like so:
+colors = {"blue" => 3, "green" => 1, "red" => 2}
+colors = colors.sort_by do |color, count|
+  count
+end
+This bit of code first defines the colors hash, then uses the sort_by method to sort the keys in it from largest to smallest,
+according to their value ("count")
+Note also that the .sort_by method is another example of something iterating over a hash.
+The thing to be sorted by (either the key or the value) is the only thing to be placed between the iterator's beginning and the "end" statement.
+Can use the .reverse method on the hash to make it largest to smallest, by the by.
+It should be noted, though, that the sort_by method only returns an array of arrays, each inner array being [key, value]
+Also to note that, since it is impossible to apply .sort_by! to things (note !), cuz...? I guess cuz it only really applies to arrays
+and ahshes and stuff and those don't respond well to !'s? Anyway, because of that, and because, without the !, the sorting is ony
+temporary, it is necessary to set the variable.sort_by piece equal to the variable itself, like is done in the  piece of code
+above (Note the part of colors = colors.sort_by part.
+.reverse does NOT apply to hashes. Does apply to arrays, though!
+The "nil" that sometimes occurs after a program is ran is there because each and every action in Ruby has a return value, and thus,
+the "nil" is the return value of whatever was last in the program (probably a "puts' or somesuch.
+the .gsub method does NOT work with any and all non-letter characters. In ALL of these cases, the variable.gsub action will 
+return nothing.
+This is because, apparentlyu, Ruby considers those characters to be control characters, or... something.
+Point is, to fix these problems, they can be ESCAPED.
+Escaping basically means putting a backslash in front of it! Some examples:
+\?      \.           \"                 \ (This one's an escaped space.)
+Escaping is generally done to tell Ruby (And other languages, cuz I know this is in Python too, at the very least.) that this
+character is meant to be part of a string, and not a command or aything like that.
+the "unless" statement can be used in the same line as an action. .is_a? is a method which returns true if the attached variable or object 
+or whatever is a part of the class attached to the method. Example of both principles as follows:
+  puts "That's not an integer." unless variable.is_a? Integer
+Seems pretty useful. If variable is NOT an integer, then Ruby will print that string. 
+a method is a block of code that can be reused with different inputs.
+This is TOTALLY the same as a method that is called with .
+They are both functions that are done to an object, without typing out all the code for them first. Here, we'll learn how to make
+our own functions!
+The basic syntax of a method is as follows:
+def FOXES(variable)      #header
+  stuff                   #body
+end                       #end
+the header tells ruby that we're beginning the creation of a new method. It includes the def statement, which says we're making a 
+new method, the name of the method (here, it's "FOXES"), and any arguments the method takes.
+The body, which is by convention indented by two spaces (Or one press of TAB), is the part which details what the method actually
+DOES.
+As per many other things, this defining a new method ends with the END statement.
+To call a method in the future, simply type the name of the method. for example, to call the method defined earlier, we'd do this:
+FOXES
+If a method takes arguments, we say it accepts or excepts those arguments (There was prolly MASSIVE arguments about that....)
+The argument is the piece of code put between the parentheses when calling methods.
+The parameter is the variable put between the parentheses when defining methods.
+When defining it, you use the parameter for the purposes of defining the method.
+When calling the method, you'd prollyuse a variable that had something for the method to operate on stored in it. Calling a method with arguments shown below:
+FOXES(Cats?) #Here, Cats? is the argument to the method FOXES
+the parentheses are actually optional, but are still good to have forthe sake of readability.
+parameters are kinda like nicknames the program gives arguments, because it doesn't know ahead of time the names of those 
+arguments.
+Arguments can be strings, variables, numbers, etc. Parameters, I'm pretty sure, can only be variables which aren't defined.
+A splat argument is used to define a method when we don't know how many arguments will be applied to it! The syntax for that
+is demonstrated by the following example:
+def what_up(greeting, *bros) #Defines the what_up method, with the parameters greeting and bros. However, because of that
+#asterik, bros is a splat argument, and can accept more than one argument!
+  bros.each { |bro| puts "#{greeting}, #{bro}!" } #this line sets up a loop for each and every value of bros, then, for each
+  # Iteration of that loop, outputs the value of greeting, and the value of bro.
+end
+ 
+what_up("What up", "Justin", "Ben", "Kevin Sorbo") #This calls the what_up method, with "What up" as the GREETING argument,
+and everything following as the BROS argument. 
+THere can be only one splat argument in a single method, I think. It would make sense, at least.
+splat arguments should probably be put either first, or last.
+When first, only the last argument is NOT in the splat argument (or the last two if there's two non-splats, three if three non-splats, etc.)
+Similarly, only the first argument is NOT splat if the last parameter is splat.
+Splat arguments, I'm pretty sure, result in arrays being assigned to the splatted parameter.
+The RETURN statement makes it possible to use methods for things other than outputting and stuff. (They still sound pretty useless, though)
+def double(n) #Defines the method, is pretty simple
+  return n * 2 #Makes the value of the method equal to double the argument put into it.
+end
+
+output = double(6) #Sets OUTPUT equal to the value of double when its argument is 6
+the return statement seems pretty simple.
+If the return statement ISN'T used, then the value of the last expression done within the method will be returned.
+So, if for example we want a specific method to do something, but also return a specific thing, we would wanna use the return
+statement. Probably useful for more complex methods and stuff!
+Code blocks are kinda like nameless methods!
+They can be made with either do and end, or else with curly braces {}
+methods can be applied directly to strings or arrays, as shown in the following:
+abstracting is the process of making complex things simpler. I... I think...
+Sorting is a very common method of doing things in programming, and is one which has many steps and plans already made!
+The .sort method also works on strings! It sorts them alphabetically!
+The combined comparison operator looks like this: <=>
+It returns a -1 if the first item should come before the first (Less) a 0 if they are equal, and a 1 if the first should
+come after the second (More)
+Assignment operators (=): The variable to which something is to be assigned MUST come before the value it is to be assigned.
+So, variable = 5 + 2 works, but 5 + 2 = variable does NOT. From what I can tell, at least.
+This piece of code sorts the array of strings. I'm not sure why.
+A default value for a parameter/argument can be set when defining a method. This is done as so:
+def cats(dogs, oranges=83)
+Here, the default value of oranges is set to 83. This means that, if a second argument isn't assigned, the integer 83 will be used
+in its place.
+This can also work with strings, truth values, integers, etc., as shown below (Does NOT work with variables!):
+def cats(dogs=90, oranges=true) #Here, dogs would default to 90, while oranges would default to TRUE
+If only one argument is assigned, I'm pretty sure it is always assigned to the first parameter. I'm not sure if there's a way
+to change that, but can prolly work around it by assigning the default first argument as the argument (90, in above example)
+Methods and such are good for simplifying programs, because once they are made they can be invoked without putting any more thought
+into how they work!
+Can still iterate over hashes. Still works, and stuff.
+When a variable or statement or somesuch is called, but has no value, it will return the value NIL. This value is NOT false,
+but it is also not true. 
+nil, along with false, are the only two non-true values in Ruby. Everything else is considered true. 
+For example, an if statement paired with the string "bacon" or with the integer 2 would run, while an if statement paired with true
+would also run.
+if "unova" 
+  puts "Run"
+end #This block of code would run.
+Remember that keys in hashes cannot be variables, and so are normally strings!
+When a hash has no default, and a key that does not exist in the hash is called, ti will return the value "nil"
+When a hash has a default in this situation, though, the default value is returned
+The keys in hashes do not HAVE to be strings, though: They can also be symbols! What's a symbol? Keep reading, idiot!
+A key difference between strings and symbols is that, while there can be many strings of the same value, there can only be
+one of a particular symbol at any one time.
+Each example of a string is a different object in Ruby's "mind", while each symbol is the exact same symbol.
+The .object_id method is used to give the object number of something or another. It can be used to tel lwhether or not two things
+are the exact same object. For example:
+puts "string".object_id #9788940
+puts "string".object_id #9788720
+# Note how each string is a different object, while the symbols are just the same symbol placed twice.
+puts symbol:.object_id #320008
+puts symbol:.object_id #320008
+Ctrl + numberkey can be used to change browser tabs in google chrome (Not ruby, but interesting thing I just found out!)
+ctrl + 6, for example, brings you to the sixth tab from the left.
+Variables in ruby cannot BEGIN with numbers, must begin with letters or underscores.
+Symbols must ALWAYS end with a colon (:), and then, with no spaces throughout, the name of the symbol is typed. Some examples:
+your:               _YOURE:                  Yar:                    you're_38:
+symbols can be assigned to variables:       variable = symbol:
+symbols are often used as hash keys in Ruby, because they are constant, and can thus save memory, and they
+can't be changed once created,and are thus faster to run than strings-as-keys
+Remember that there must be a comma after each key-value line when using literal notation to define a hash.
+the .to_s and .to_sym methods can be used to change strings to symbols, and vice-versa.
+the .push method can be used to add things to the end of an array. The syntax for that is as follows:
+array = []
+array.push("STRING")
+After this block of code is ran, the value of the array variable would be ["STRINGS"]
+There are almost always more than one way to do things in Ruby, cuz that's a core philosophy of the language.
+Similarly, there is more than one way to transfer from strings to symbols and back
+The .intern method is exactly the same as the .to_sym method. Hooray?
+The hash syntax using => is sometimes called the Hash Rocket
+However, this syntax has been updated away from, and now the correct syntax looks more like this:
+Also, the hash rocket is no longer required; the key and value have no symbol but space between them.
+new_hash = { one: 1,
+  two: 2,
+  three: 3
+}
+The .select method can be used for a more selective sorting of hashes. For example:
+movie_ratings = {
+  :memento 3,
+  :primer 3.5,
+  :the_matrix 5,
+  :truman_show 4,
+  :red_dawn 1.5,
+  :skyfall 4,
+  :alex_cross 2,
+  :uhf: 1,
+  :lion_king 3.5
+}
+good_movies = movie_ratings.select do |move, rating|
+    rating > 3
+end
+The last bit of code sorts through, and only returns movies with a rating (value) higher than three. Useful, yeah?
+It is also possible to iterate over ONLY the keys/values of a hash. This is done with the .each_key or .each_value methods
+These methods work just like the .each method, except they only iterate over keys or values, respectively.
+the case statement can be used like a more concise if/else statement, like so:
+
+case stuff #Rather than opening with if
+when "thing1" #Each when is like an elsif statement
+  puts "Sure!" 
+when "Oranges" #In this instance, the variable stuff is paired with the case statement
+  puts "NOOOO"
+when "Apples" #Each WHEN checks to see if the stuff variable is equal to each of these strings. 
+  puts "Don't compare those"
+else #If it's equal, then that when's block is done, and the program moves on. If not, then the program just moves on.
+  puts "Nah"
+end #Works pretty similarly to a standard if/else loop. 
+
+The case statement trades a bit of the versatility of if/else loops for a more concise and less wordy syntax.
+the .to_i method turns a string into an integer. How useful! I imagine this would only work for strings that are integers.
+To delete a key/value pair from a hash, simply use the .delete method, as shown below!
+hash_variable.delete(key)
+Ruby is a language that prioritizes the programmer's health and mental capacities and such more than efficiency.
+if and unless can be used directly after statements, sort of as an afterthought. See below:
+puts "four is more than five" unless 4 < 5
+puts "five is more than four" if 5 > 4
+This is called a one-line if statement and is something somewhat unique amongst coding languages!
+There is also the ternary expression, so named because it has three parts:
+A boolean, something to express if that boolean is true, and something to express if it's false. See below:
+thing to be done  boolean ? expression 1 : expression 2
+That's a bit confusing, so here's a better example:
+puts 3 > 4 ? "KILL ALL" : "Nah, It's all good"
+In this case, the second string would be printed, because the boolean given is false.
+The case/when statement can be further compacted as well! Thusly, instead of this:
+case language
+when "JS"
+  puts "Websites!"
+when "Python"
+  puts "Science!"
+when "Ruby"
+  puts "Web apps!"
+else
+  puts "I don't know!"
+end
+we can do this!:
+case language
+  when "JS" then puts "Websites!"
+  when "Python" then puts "Science!"
+  when "Ruby" then puts "Web apps!"
+  else puts "I don't know!"
+end
+Note how in the second example, we have to put "then"'s between everything.
+This is a much more compact, compressed form of writing code, which... honestly, I'm not sure if I like:C
+A conditional assignment operator is a thing for when you wanna assign a variable something ONLY if that variable doesn't already have a value
+variable = "STRING"
+variable ||= "STRING???????" # This is the conditional assignment operator!
+In the above case, the variable would remain "STRING", because in the second line, nothing is assigned to it cuuz it already
+has a value! Amazing!
+Because Ruby is lazy, it will stop reading once it knows a thing is false.
+For example, in the following line:
+(true && false) && (!false || (true && false))
+It would stop at the second &&, because it knows that the first parentheses is false, and anything AND'd (the &&) with false is 
+gonna be false, so it just stops paying attention right there! (I'm... not sure where it would EVER be useful to know this...)
+By the way, it's possible to print more than one thing with a single PRINT command. Just do it like the following!
+print variable, " string added after the variable"
+Niiiiiiifty
+.upto and .downto can be used to provide an array and for loop for a certain number of iterations. Confused? That's probably cuz I wrote that sentence badly!
+whatever. Fuck you, reader.
+Anyway, here's a demonstration of those things.
+95.upto(100) do |num|
+  prints num, " " #This would print out the following: "95 96 97 98 99 100"
+See? It provides it's own input, AND the number of iterations, how handy! It's like a self-generating.each loop!
+.downto works in EXACTLY the same way. Except, ya know, downwards.
+They also work on letters!
+"L".upto("P") do |let| #Just make sure to remember to put the letters in strings!
+    puts let
+end
+The .respond_to? method can be used to check if an object will accept a given method. For example:
+age = 26 #Defining a variable
+age.respond_to?(:to_sym) #Note how the method tested is in parentheses, and has a colon preceding it.)
+This would return a value of false, because the .to_sym method can't be applied to integers.
+[1, 2, 3].respond_to?(:push)
+This would return true, because arrays can have the .push method applied to them.
+This would be useful for sorting input depending on what type of input it is!
+the .next method returns the integer directly after the integer it's called on.
+So 5.next would return 6
+concantenation operator (<<) (also known as "the shovel") can be used in the place of the .push method. See below:
+[1, 2, 3, 4] << 5 # Resulting in [1, 2, 3, 4, 5]
+It also works on strings, unlike the actual .push method! This can replace the method of string_variable + "string"
+cap = "Never"
+cap << " again" # Resulting in cap == "Never again"
+Can use this sort of thing to place variables in strings, as well.
+drink = orange_juice:
+puts "I love " << drink.to_s.gsub(/_/, " ") << " very much!"
+Generally, it's much better to use string interpolation (that thing with #{}), rather than this method, because this method is,
+honestly, pretty stupid?
+Refactoring code is making it structured better or prettier, but not changing how it functions
+the .nil? method returns true if the object it is attached to has a value of nil
+Notes on using ruby well and good and stuff!:
+Always use << instead of .push
+Where possible use "integer.times" rather than for loops
+Where possible, use one-line if/unless structures Of course, where there is anything beyond a conditional "Do this if this", 
+sort of thing, this is impossible, and thus multi-line structures must be used.
+The colon of a symbol goes BEFORE the symbol's name.
+:correct              :incorrect
+The proper indentation for a single indentation is TWO SPACES. Not tab, for whatever reason.
+A ruby block is basically just some code that can be executed.
+They can be combined with methods like .each or .times to exectute them for each element in a collection, and stuff like that.
+Basically, a block is just a piece of code?
+.collect is a method very similar to .each
+Both of them can execute a block of code for each element in the collection they're attached to.
+.collect, however, executes a block of code on each element of the collection, then returns an array made up of the output of 
+the block of code.
+This is not QUITE the same as .each, which simply executes the block of code
+Both of them use the current element of the collection as an argument.
+.collect returns a copy of the original collection it's applied to.
+However, .collect! can be used to modify the original array.
+fibs = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+doubled_fibs = fibs.collect {|x| x * 2} # For each element it is passed, it doubles the element then returns the result.
+A BLOCK IS ANY BIT OF CODE THAT IS BETWEEN {} OR DO... END. ANY BLOCK THAT REQUIRES THOSE BITS IS A METHOD THAT REQUIRES
+A BLOCK TO BE ATTACHED TO IT.
+So... some methods accept blocks, because they have a method for passing control from the method to the block.
+This can be built into methods we define using the YIELD statement. 
+def block_test #Here, we define the method. This one has no parameters, and doesn't call for an argument.
+  puts "Yielding to the block..." #Right here, the control is with the method. The code being executed is that which is defined
+                                  in the method.
+  yield #Here, with the yield statement, the code being executed is instead that of the block attached to the method.
+  puts "We're back in the method!" #the yield ends with the block of code's execution being done. 
+end
+
+block_test { puts ">>> We're in the block!" } #Here we're calling the method, and attaching a block of code to it.
+block_test do
+  puts ">>> We're in the block!"
+end  # This would also work, as it does the same thing, in attaching  the block as we're calling the method.
+Yields can be put into methods with arguments already given, as shown below:
+def yield_name(name) # Again, defining the method, this time calling for an argument
+  yield("Kim") #Instead of using the argument provided when calling the method, this line uses the block of code attached when
+  calling the method, but uses its own argument.
+  puts "In between the yields!" #Control here is back with the method 
+  yield(name) #Here the block of code attached to the method is applied, but with the argument provided when calling the method,
+  #because this yield has the parameter in it (name, rather than "Kim", the former accepting the argument provided)
+  #The NAME bit is a place for the argument provided when calling the method goes! If there is no NAME spot, then the argument will do nothing!
+  puts "Block complete! Back in the method." #Now the method is back in control, as the blocks have all ended 
+end
+
+yield_name("Eric") { |n| puts "My name is #{n}." }
+In a way, the yield statement is kind of like the parameters when defining a method.
+The parameters accept arguments attached when calling the method, while yield's accept blocks attached when calling the method
+Almost everything in Ruby is an object: strings, hashes, variables, etc.
+I'm seriuos, ALMOST EVERYTHING
+Blocks aren't, though.
+Objects can be saved to variables
+Since blocks aren't objects, they can't be saved to variables!
+To work around this, we can use PROCS.
+procs are useful when we'll need a block of code many times, because then we don't have to type it out each time!
+procs are essentially saved blocks.
+procs can be called with Proc.new, kinda like hashes!
+Once we've done that, we can pass that proc on to a method that would normally accept blocks (and, I think, anywhere that a 
+block would normally go.
+a proc replaces a block of code, which is the code inside a {} or do...end that is usually attached to methods and such things
+The .map and .collect methods are exactly the same.
+Using & on a proc turns it into a block, which would be used any time we applied a proc to a method that normally would call for a block
+the .floor method rounds down a float (a number with a decimal)
+group_1 = [4.1, 5.5, 3.2, 3.3, 6.1, 3.9, 4.7] #Various groups, to be sorted through such that the only numbers remaining 
+group_2 = [7.0, 3.8, 6.2, 6.1, 4.4, 4.9, 3.0] #Are those greater than 4
+group_3 = [5.5, 5.1, 3.9, 4.3, 4.9, 3.2, 3.2]
+
+over_4_feet = Proc.new do |height| #This defines our proc, which is just going to be the block of code attached to the methods below
+    height >= 4
+end #A proc is not like a method, it is just parameters and code and arguments and such to be attached to a method.
+
+can_ride_1 = group_1.select(&over_4_feet) #Here we apply our proc, which will replace the blocks that normally go here.
+can_ride_2 = group_2.select(&over_4_feet)
+can_ride_3 = group_3.select(&over_4_feet)
+procs can be called directly with the .call method.
+A proc doesn't necessarily have to be an input, output, or anything like that, it's just a saved bit of code.
+lambdas are pretty similar to procs.
+A lambda is just about hte same as a proc.
+writing this down here because it took me a while to understand:
+def lambda_demo(a_lambda) #defines method, and sets a parameter as a_lambda
+  puts "I'm the method!" #Just puts the string, simple
+  a_lambda.call #applies the .call method to whatever is attached to the method as an argument when it's called.
+end
+
+lambda_demo(lambda { puts "I'm the lambda!" }) #Calls the method, using the lambda in {} as the argument.
+Differences between lambdas and procs:
+lambdas check the number of arguments given to them, and return an error if they don't receive the right amount.
+Procs ignore any additional arguments, and assign nil to any that are missing.
+Procs don't return control to the method after they are executed, and return their stuff directly to the console or whatever
+Lambdas return control to the method after they are executed, and return their stuff into the method they're in.
+def batman_ironman_proc
+  victor = Proc.new { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!" #Returns "Batman will win", because that is the last thing the method returned, cuz method didn't regain
+  #control after the proc
+end
+puts batman_ironman_proc
+def batman_ironman_lambda
+  victor = lambda { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!" #Returns "Iron Man will win", because the lambda returns control to the method, and so this string is the
+  #Last thing the method returns.
+end
+puts batman_ironman_lambda
+Names for things that Ruby will recognize (such as Symbol, Integer, Object, etc.) Must be capitalized!
+The .select method returns the element it is on IF the parameters attached to .select are true for that element.
+Each object has values and methods, and those values and other things can be manipulated using methods called on that object.
+For example, in "Matz".length, the string has a length value of 4, which is called using the .length method.
+This string is a member of the String class. 
+Each object is a member of a class.
+A class is a way of organizing objects so that they have similar attributes and methods.
+Basic defining of a class syntax only involves the statement to define the class, and new class's name.
+Generally, class names are capitalized, and do ThingsLikeThis instead of using Underscores_Like_this
+The syntax for defining a new class are as follows:
+class ClassName #Makes the new class, with the name ClassName
+  #Class magic goes in here!
+end
+Often, defining a class will begin with the initialize method, which is a way of, well, initializing each object in the class
+when it is created.
+This initialize method must be defined just like a regular method (I'll be including an example class defining later, to summarize
+all this stuff. Hopefully that will help!)
+The code "meat" of defining a method or class or whatever is called the "body". The body is basically everything between the 
+statement that starts defining the thing, and the END statement.
+In ruby, we use @ before a variable to signify that it's an instance variable.
+An instance variable is one that is attached to each instance of the class (I guess each object that is a member of the class?)
+This is so that, every time we tell Ruby to make a new object of the class, it has to have a value for that variable.
+This is where the values of an object in a particular class come from!
+Whenever a new object of the class is made, the initialize method is run on it, giving it various values and stuff,using
+input provided when the object is created.
+To create a new object of a class, call .new on the class name, with arguments for the values and such. (Classname.new(values))
+This will be in the example provided below. It should be pretty easy to see!
+objects in classes should probably be stored in variables, or else there's no real point in creating the object in the first place!
+The scope of a variable is the contexts in which it is visible to the program.
+$Global variables are available everywhere
+local variables are only available to certain methods
+@@Class variables are members of a certain class.
+@Instance variables are only available to particular instances of a class
+The same restrictions and names also apply to methods!
+variables made outside of classes and such are already global variables.
+Variables can be made global inside of classes using $
+In the following example:
+class MyClass #The class is defined, and that which follows until end is a part of the class
+  my_variable = "Hello!" #A variable is defined as a class variable, as it is defined in a class.
+end
+
+puts my_variable #Since it is a class variable, it cannot be reached by the program outside of the class.
+This dilemna could be worked around by defining my_variable as $my_variable, thus making it a global variable, or else defining
+it outside of the class. If using $, would have to add the $ when calling it as well, as with: puts $my_variable
+Global variables can be modified from anywhere in the program, and thus are not an amazing idea usually.
+Better to create variables with limited scope that can only be modified from a few places! (Why?)
+Because class variables are shared throughout the class, and not limited to specific instances/objects of the class, they
+can be used to do things more general, such as tracking how many instances of a specific class there are.
+The entire body of a class is not executed each time an object of the class is created, only the methods within the body
+of the class, such as initialize and whatever else you put in there.
+This isn't the full class example, just /A/ class example, that's really confusing so I'm putting it here to understand it better
+class Person #Defines the PERSON class
+  @@people_count = 0 #Sets the @@person_count (a class variable) equal to zero. This line is only run during the beginning of 
+                     #The program, and thus doesn't reset the count each time a Person object is defined.
+  
+  def initialize(name) #The initialize method, which assigns a name value to each object in the Person class.
+# Since this method is run each time a Person object is created, it is the best place to put an incrementor for each time an object is created.
+    @name = name
+    @@people_count += 1 #This incremements the @@People_count variable by one each time a Person object is created.
+  end
+  
+  def self.number_of_instances #This creates the .number_of_instances method, which can be called on the class itself, I think.
+    return @@people_count #When this method is called, it returns the @@people_count method.
+  end #I'm not ENTIRELY sure about everything on this self thing that the method is called on, but I'll write down what self is 
+  #Below.
+  
+end
+
+matz = Person.new("Yukihiro") #These two lines create two Person objects, running the initialize method twice with the provided arguments.
+dhh = Person.new("David")
+
+puts "Number of Person instances: #{Person.number_of_instances}" #This outputs the given string, along with the value returned
+#by calling the .number_of_instances method on the Person class.
+
+Self is an object that is whatever the current or default object accessible to the program is. 
+So, for example, if self is called within a the body of a class, then self will be equal to that class.
+Here's a link to more! http://rubylearning.com/satishtalim/ruby_self.html
+Inheritance is when a class takes attributes and values from another class.
+Inheritance is often used to express a relationship where one thing is part of another thing/group.
+For example, a fox is a mammal, so the fox class should inherit from the mammal class.
+When defining a new object of a class, initialize is the ONLY method that runs automatically. Other methods of the class must
+be called manually.
+class ApplicationError #The ApplicationError class is defined
+  def display_error #The display_error method is defined as one which one which is part of the ApplicationError class.
+    puts "Error! Error!"
+  end
+end
+
+class SuperBadError < ApplicationError #The SuperBadError class is defined, and defined as inheriting from ApplicationError
+end #How to make a class inherit from more than one class?
+
+err = SuperBadError.new #Since the SuperBadError class inherits from ApplicationError, it contains the display_error method!
+err.display_error
+If a class inherits from another one, and the inheriting class defines a method that has the same name as one in the class
+inherited from, then the inheritor will override the method, making the method used on the inheriting class use the newly defined
+code body.
+class Creature
+  def fight #Defining a method!
+    return "Punch to the chops!"
+  end
+end
+
+class Dragon < Creature
+    def fight #Defining the same method, with a different code body.
+        return "Breathes Fire!"
+    end
+end
+In this example, calling Creature_object.fight would return "Punch to the chops!", whereas Dragon_object.fight would return
+"Breathes Fire!"
+The inheriting class is also called the subclass or child
+The inherited from class is called the superclass, or parent.
+If, for example, we wanted to use the overwritten method as a part of the new one, we could do the following:
+class Dragon < Creature
+    def fight
+        puts "Instead of breathing fire..."
+        super #The super statement calls the original method's body, running it at this place in the new method.
+    end
+end
+Some languages allow a class to inherit from multiple other classes, something called multiple inheritance.
+Ruby doesn't allow that, because it's dumb, but certain aspects of other classes can be incorporated into newer ones.
+Oh, also, putting a semi-colon can replace starting a new line. So, for example, if we wanted to make an empty class, the line
+class NewClass; end
+Would do that exact thing, in only one line!
+Alright, can feel myself caring less and less about these notes as time goes on, so Imma end it for tonight.
+Alright, new day! More notes! Let's DO this!
+Oh, in case I wasn't clear, here's how to make a new object in a certain class!
+variable = ClassName.new(arguments)
+Here, we create a new object in the ClassName class, with arguments provided for the initialize method. Then, that object
+is stored in the variable! Easy, huh?
+A very, VERY basic class example:
+class Message #Class is defined
+    @@messages_sent = 0 #A variable is set to zero
+    def initialize(from, to)#initialize method calls for two arguments, which are stored in the values of each instance
+        @from = from
+        @to = to
+        @@messages_sent += 1 #Each instance created increments the variable by one, meaning that the number of instances created is counted.
+    end
+end
+my_message = Message.new("Jesus", "God") #Message is created, with two arguments, both of them strings.
+#Because of these arguments, the from and to values for this Message instance will be the given strings.
+ 
+class Email < Message #A new class is created, inheriting from the earlier one.
+    def initialize(from, to) #This initialize method would normally overwrite the one inherited from Message.
+        super #However, since it's code body is super, it uses the same code body as the parent class's initialize method.
+    end
+end
+Time.new returns the current time of the computer running the program.
+Most of the methods so far have been instance methods, which act only on a particular object. 
+Class methods are also a thing, and they belong to the class itself, not a particular instance of it.
+Class methods, so far as I can tell, are mostly important because they can access class variables and such?
+Here's another example of a class, cuz fuck you.
+class Computer #Defines the new class, beginning the whoooole process.
+    @@users = Hash.new #Sets up the class to be able to store any instances created in a separate hash.
+   
+    def initialize(username, password) #Initialize method, which calls for a username and password key/value
+        @username = username
+        @password = password
+        @@users[username] = password #Stores the password of a user under their username
+        @files = Hash.new #Allows the program to store the files of a specific user in a separate hash.
+    end
+    
+    def create(filename) #Creates a new method, which can only be used on instances of Computer. Calls for a filename argument.
+        time = Time.now #stores the current date and time in the time variable.
+        @files[filename] = time #stores the time variable as the value in the files hash, under the filename key.
+        puts "#{filename} was created at #{time} by #{@username}" #puts information on the file created.
+    end
+    
+    def Computer.get_users #Defines the .get_users method, which when called returns all of the instances of the Computer class.
+        return @@users #This is marked with @@, as it is part of the variable's name, due to it being a class variable.
+    end
+    
+    def files #defines the files instance method, which, when called on an object of the Computer class, outputs all files
+    #attached to that instance/computer
+      puts @files
+    end
+end
+
+my_computer = Computer.new(:user, :jesus) #Defines a new object of the computer class, and stores it in the variable my_computer
+Computer.get_users #Runs the computer.get_users class method, which is defined above.
+With instance variables and new classes, there is no method or anything to call up any of the instance variable values for a given
+instance of a class. To that end, methods must be defined in the class which will allow instance values to be called up, 
+and thus used.
+methods of classes can be marked as public or private.
+public methods can be used outside of the class, whereas private ones cannot be (So where CAN they be used..?)
+Attempting to call a private method outside of the class will lead to an error.
+to mark methods as public/private, put either word in the body of the class body, and everything after it will be private/public,
+until the end of the class body. 
+Every method in ruby is public by default.
+Private methods are ones which can't be called by explicit receivers. (whazzat?)
+a receiver is the object on which a method is called.
+In variable.length, VARIABLE is the receiver on which the length method is called.
+In order to access private methods/information, it is necessary to make public methods which are capable of reaching them.
+This seperates the private implementation from the public interface. (What?)
+Ruby needs methods to access attributes of objects.
+attr_reader and attr_writer are shorthand ways to add methods to classes. Each of them has a 1-to-1 translation with a short bit of code
+attr_reader :blue and attr_reader "blue" both translate exactly to the following bit of code:
+def blue
+  @blue
+end
+if we ran this bit of code on an object, it would return that object's @blue value.
+attr_writer :iris and attr_writer "iris" both translate directly to the following bit of code:
+def iris=(value)
+  @iris = value
+end
+if we ran this method on an object, it would change that object's @blue value to the provided argument.
+the equals sign next to the attr_writer bit IS part of the method name, and is a Ruby convention for saying that a method
+sets a value.
+The instance values read/written by each method are dependent on the symbol/string attached to the method shorthand.
+So, attr_writer :bling would change the instance's @bling value, whereas attr_reader "mouse" would return the instance's @mouse value
+To calling the methods made by attr_reader and attr_writer, it is the exact same process as calling the methods they are shorthand
+for, working much like the length method built into Ruby.
+attr_reader :read would be called with object_variable.read while attr_writer "kill" would be called with object_variable.kill=(argument)
+attr_accessor combines attr_reader and attr_writer, literally just combining the two of them into one shorthand.
+So, attr_accessor makes BOTH of the code bodies that attr_reader and attr_writer are equivalent to.
+Thus, if attr_accessor :orbs were part of a class, we could do object.orbs, returning the object's orbs value, or we could do
+object.orbs=("not orbs"), changing the object's orbs value to something else.
+modules are kinda like classes, except that they can't have objects, and don't accept subclasses/inheritors.
+modules are basically places to define methods and constants and such, and then we can later call up those modules/methods,
+and use them, without putting them back in the interpretor.
+module name conventions are similar to class's, CapitalizeEachWordNoUnderscores.
+They are also defined in much the same way as classes:
+module ModuleName
+  CONSTANT = constant_value #Constants can be strings, integers, basically everything that can be stored in variables, I think.
+end
+pre-existing modules can be called into single programs, but we can also make our own.
+constants are things in modules that don't really change. Their naming conventions are ALL_CAPS_WITH_UNDERSCORES
+constants CAN be changed, but Ruby will warn you before it will actually change them.
+defining constants uses the same syntax as defining variables, but since constants are defined in modules, which don't have variables,
+this is mostly okay.
+Constants with the same name but different modules will be kept separate by Ruby.
+modules are basically a way to store information in named spaces (like variables, kinda, but bigger in scope.)
+So, for example, Math::PI and Circles::PI are seperate entities in the mind of Ruby. (these are examples of calling constants
+from modules.
+the double-colon is a way to tell Ruby where we're looking for information. It's called the scope resolution operator.
+So, for example, Math::PI will return 3.141592653589793, the value stored in the Math module for that constant.
+Some modules are already present in the interpreter/program, such as Math, while others must be called in specifically.
+to call in a module, use the following syntax:
+require 'module'
+modules can be included in classes, meaning that class will have access to all the methods and constants that that module has.
+Basically, this is the same as inheriting the module.
+This is done by placing include ModuleName in the body of the class.
+including a module and all its stuff in a class is called a mixin.
+Mixins allow customization and modifcation of classes without having to write the same code over and over.
+the rand(integer) statement returns a random number in the range from 0 to the number provided as an argument. Handy!
+using mixins, it is possible to kinda simulate multiple inheritance(a class inheriting from multiple other classes)
+by using EXTEND  rather than INCLUDE, the module's methods and such are made into CLASS methods, rather than instance methods,
+meaning they can be used on the class itself rather than on instances of it.
+class methods are done on the class itself, rather than on specific instances of it.
+the syntax to call a class method is as follows:
+ClassName.methodname
+The syntax to DEFINE a class method is:
+class Classname
+  #Other bullshit, initialize method and all that shit, class methods don't actually have to be last but this one IS
+  def Classname.method
+    #Body
+  end
