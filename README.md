@@ -1,4 +1,2 @@
 # Ruby
-Some loser trying to do a Ruby. I guess?
-It's not very good.
- I guess this is maybe how things work. I'm not terribly sure anymore.
+This is just some programs and things I wanna keep laying around. Mostly just things I am proud of because they represent me doing things and learning and shit. Hooooray.
