@@ -1055,4 +1055,13 @@ the .zip method. I'm not gonna write down what it is right now, but you can look
 Arrays can be made quickly and easily using the following syntax (s..e), where s is the starting number, and e is the ending number
 so (1..5) would result in [1, 2, 3, 4, 5]. Could also use the exclusive ellipses (...), where (1...5) => [1, 2, 3, 4]
 This technique is really useful when combined with the .map method.
-Ruby on Rails is a web framework used for making web apps. I dunno what that means, though, so let's learn some shit!
+The .reduce method combines the contents of an array according to a simple operator. Observe:
+(1..5).reduce(:+) #=> 15
+.split(//) splits a string into an array of each character.
+"hello".split(//)               #=> ["h", "e", "l", "l", "o"]
+the various to_class methods (to_i, to_s, to_sym, etc.) do NOT work with exclamation points attached. Will only caused a no method error.
+All arrays are also members of the enumerable class. So if you're looking for a method that affects arrays, also check in the 
+methods for enumerables!
+inject method is pretty useful. Does stuff to enumerables.
+What's metaprogramming???
+lambdas and other blocks of code (procs included) can be called without being put into methods or anything like that using the .call method.
