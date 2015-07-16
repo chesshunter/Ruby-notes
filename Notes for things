@@ -1,8 +1,8 @@
 .reverse, .upcase, .downcase are all methods, have pretty self-evident meanings. As is .capitalize
-methods are things done to strings ("This is a string"), and are invoked by putting a . after a string
+methods are things done to objects ("This is a string"), and are invoked by putting a . after a object
 Ruby-doc.org is an immensely useful website. It's basically like a dictionary for all the methods and ommands and such!
-using a method on a variable containing a string is equally valid (variable = "string", variable.method)
-variables are defined in a pretty basic manner: variable = "string", integer, or (other variables?) (something else? don't remember third thing)
+using a method on a variable containing an object is equally valid (variable = "string", variable.method)
+variables are defined in a pretty basic manner: variable = object
 "gets" command receives input from user. Can be string or integer
 Ruby automatically inserts new line after each bit of input. .chomps is a method which removes that.
 gets does not need an output to the user attached to it. Does probably need to be attached to avariable, though.
@@ -14,7 +14,7 @@ This means that, should a prints be used to provide a question for the user, the
 whereas, if puts is used, the input will be saved in the line AFTER the question
 If a variable being saved is the last line of a program, then the variable's value will be the last piece of the output, whether
 a command such as puts or print is used or not.
-"Ruby will recognize paired "quotation marks" in a string as not ending the string". Thus, that whole sentence would be one string.
+Any intended quotation marks in strings "must be \"escaped\", as shown here."
 string interpolation: putting the command (or whatever) #{variable} into a string will make that command be replaced by the 
 value of that variable. Methods can be applied to the variable/string within the {}
 So "I ate a #{food}", where food = ham, will result in the string being "I ate a ham"
@@ -1039,6 +1039,7 @@ of the execution on each element into a new array. So:
 [5, 6, 7, 8].map{|x| x**2} # -> [25, 36, 49, 64]
 .join method can be called on an array, returns a string made by combining everything in the array. 
 [5, 6, 7, 8].join #-> "5678"
+.join can't be made permanent (can't have ! attached to it)
 the .to_f, .to_i, to_s, etc. methods can be used to use class methods for one class on a class they weren't designed for,
 like using .reverse on a integer like so: 565.to_s.reverse.to_i How handy. 
 566.to_s.reverse.to_i #returns 665
@@ -1064,4 +1065,73 @@ All arrays are also members of the enumerable class. So if you're looking for a 
 methods for enumerables!
 inject method is pretty useful. Does stuff to enumerables.
 What's metaprogramming???
-lambdas and other blocks of code (procs included) can be called without being put into methods or anything like that using the .call method.
+lambdas and other blocks of code (procs included) can be called without being put into methods or anything like that using the .call method
+.find_all returns all the elements of an enumerator for which the attached block is true.
+(1..10).find_all do |i|
+	i % 5 == 0
+end 											#=> [5, 10]
+alternatively:   (1..10).find_all { |i| i % 5 == 0 } 			#=> [5, 10]
+note that .find_all returns things in arrays.
+.find_all is EXACTLY the same as .select, except that .find_all, when used on hashes, returns a multi-level array, 
+while .select returns a hash of all the matching keys and values.
+.reject is the exact opposite of .find_all, returning all elements of the enumerator for which the block is false.
+Note that all three of these methods are still incrementors/enumerators/loopers/whatever, and thus
+the code block attached to them is ALL ran, so things other than checks for certain things can be included.
+This, of course, provided that the final piece of the block is still something that returns true or false.
+.count method returns the number of elements in the attached array.
+If an argument is provided when .count is called, .count returns the number of elements in the array that are 
+equal to the argument.
+If a block is provided with .count, the number of elements for which the block is true is returned.
+adjacent strings are automatically combined by ruby
+"ca" "t" == "cat"
+Ruby only executes ONE of the possible branches of an if/else statement. 
+So, if the factor being checked fulfills two of the possible branches, it will only execute the code attached to the first one checked.
+Numeric is a class containing both Integer and Float
+A regular expression is a sequence of characters used to define a search pattern.
+They're mostly used for pattern matching with strings and such.
+Regular expressions are not just in Ruby! They are a concept spanning most all of computer science!
+An example of a regular expression, also called regex or regexp: /W[aeiou]rd/
+This is what regular expressions look like in RUBY. They don't look the same in all languages and places!
+I'm... sure we'll learn exactly what all of that stuff means in a bit!
+regex's are a class of their own in ruby, and can be stored in variables just like any other object.
+Each character in a regexp is understood to either be a metacharacter, with a special meaning, or a regular character, with 
+its regular meaning (W, for example, would be just a W!)
+Using regular expressions, we can search for things, but they don't have to be exact matches for once!
+Characters in brackets, any of the characters in the brackets will match for that particular space.
+/seriali[sz]e/, for example, would match both serialize and serialise
+A single regular expression is often referred to as a pattern.
+Ruby works very well with regular expressions, and they can be very useful, even if they seem very intimidating at first!
+Regular expression has various libraries of commands and metacharacters and stuff, and different languages and environments
+will use different languages, so make sure to know which library is used!
+Ruby uses the Onigmo library of regexps. https://github.com/k-takata/Onigmo
+The basic ruby statement for matching with regular expressions is =~, which returns the first character which matches the pattern.
+So, for example, /unova/ =~ "Jesus christ unova!" would return the integer 13.
+Alternatively, we have !~, which checks if the string does NOT contain the pattern. If it does not, it will return true.
+Both =~ and !~ can be reversed, meaning that we can put the string first and the regexp after!
+"Jesus is the ONE TRUE JESUS" !~ /unova/     #=> true
+These are only the most basic of the regexp tools that Ruby has, however!
+For instance, we also have the .match method and the MatchData class.
+match = /force/.match("Frictional force is a property of jesus")
+This will return a MatchData instance, which has information in it about the match that was just made.
+We can also have the checking for matches start at a specific point in the string, as so:
+/mouse/.match("mouse killing baby hunters", 3) 
+This would start the checking for matches on the third character. Since there are no matches for the entire regexp after the 
+third character, this operation would return nil.
+Earlier, we stored the MatchData in the match variable. With that, we can do some other things:
+match.to_s, for example, would return the contents of the match as a string: "force"
+match.pre_match returns the contents of the string BEFORE the match, in this case "Frictional "
+match.post_match, predictably, returns the string's contents AFTER the match, here " is a property of jesus"
+MatchData is much more useful, however, when the regexp has capture groups.
+match = /(.*)mouse(.*)/.match("That is a fast mouse indeed.")
+Those things in the parentheses, the .*, mean any characters, in any quantity. A period on its own (.) would mean any character.
+Their position relative to mouse mean that they will capture any amount of any characters before and after mouse.
+Each capture groups new contents are stored seperately in the MatchData instance, which becomes something like an array:
+MatchData = ["That is a fast ", " indeed.")
+Note that mouse itself was not put into the matchdata group! I think that's because, when a regexp has groups in it (the ()),
+only things that are in groups are put into the MatchData. So, if the regexp was more like /(.*)(mouse)(.*)/, Matchdata would
+look more like ["That is a fast ", "mouse", " indeed."]
+We can use bracket notation to return specific pieces of the Matchdata, much like with arrays.
+However, the numbering begins at 1 for MatchData, unlike with arrays. Thus, MatchData[3] would return " indeed."
+Matchdata[0] returns the entire string that the regular expression was ran on.
+Of course, this can be worked around by merely applying to_a to the MatchData.
+gsub can accept either regular expressions or literal strings. I imagine other methods that accept string arguments could too?
