@@ -435,6 +435,7 @@ methods can be applied directly to strings or arrays, as shown in the following:
 abstracting is the process of making complex things simpler. I... I think...
 Sorting is a very common method of doing things in programming, and is one which has many steps and plans already made!
 The .sort method also works on strings! It sorts them alphabetically!
+.reverse works exactly like .sort, except in reverse! so "string".reverse would result in the string or array being sorted in opposite order.
 The combined comparison operator looks like this: <=>
 It returns a -1 if the first item should come before the first (Less) a 0 if they are equal, and a 1 if the first should
 come after the second (More)
@@ -1135,3 +1136,112 @@ However, the numbering begins at 1 for MatchData, unlike with arrays. Thus, Matc
 Matchdata[0] returns the entire string that the regular expression was ran on.
 Of course, this can be worked around by merely applying to_a to the MatchData.
 gsub can accept either regular expressions or literal strings. I imagine other methods that accept string arguments could too?
+The .scan method, when called on a string, returns all pieces of the string matching the provided pattern.
+"A foolish fool is a fool.".scan(/fool/)   #=> ["fool", "fool", "fool"]
+Lookarounds allow Ruby to match patterns non-literally. Notice how above the "fool" in "foolish" got included too?
+If, for example, we only wanted the "fool" in "foolish" to be matched, we could use a lookahead, as shown here:
+"A foolish fool is a fool.".scan(/fool(?=ish)/)
+This makes it so that ruby only matches the pattern "fool" IF it is followed by the letters "ish".
+While, theoretically, we could just make the regexp /foolish/ instead, note tthat this would lead to the resulting
+match being "foolish", and not "fool". With the lookahead, the match remains "fool", but only the one inside "foolish" is actually
+considered to be a match.
+Applying lookahead:
+"A foolish fool is a fool".gsub(/fool(?=ish)/, "JESUS")    #=> "A JESUSish fool is a fool"
+Note that only the matching part of "foolish" (fool) was replaced, and that neither of the other "fool"'s were replaced!
+The (?=ish) part of that regexp is ZERO-WIDTH. This means that the capture group marked by parentheses (?=ish) returns a true
+or false depending on the presence of the lookahead.
+The ?= bit is POSITIVE. This means that the attached lookaround is expected, and must be present for a match to be made.
+Conversely, a ?! is NEGATIVE. This means that the attached lookaround is not expected, and will prevent a match from being made.
+So: "A foolish fool is a fool".gsub(/fool(?!ish)/, "JESUS")   #=> "A foolish JESUS is a JESUS"
+This specific example is a LOOKAHEAD. This means that the attached pattern must come AFTER the main pattern.
+This example is an ASSERTION. That means that the capture group marked by parentheses doesn't return the matching bit, but 
+determined whether a match is made at all.
+The ?= syntax is specifically for lookaheads. 
+Similarly, there is the possiblity of lookbehinds:
+"Jesus hates the beavers".scan(/(?<=the )beavers/)
+This would return a match for all instances of the pattern "beavers", but only those preceded by "the" and a space.
+This is much the same as the lookahead described above, except that it is behind! How nifty!
+Similarly, there is a negative lookbehind syntax, which matches only the pattern that is NOT preceded by the lookbehind:
+"Jesus might hate those who hate him.".gsub(/(?<!might )hate/, "LOVE")    #=> "Jesus might hate those who LOVE him"
+Note how it only replaced the one that was NOT preceded by might !
+Lookarounds are helpful, because they allow matching only in certain contexts, rather than being static!
+Regular expressions are very powerful. That's why they've been in computer science for so long!
+Generally, there are three primary behaviors for regexps: Greedy, lazy, and possessive. 
+Using quantifiers, we can choose and control which of these that our regexes will be.
+Quanitifiers tell a regular expression how many times a character or group of characters should appear in your pattern.
+A very common quantifier is +, which means that the attached character must appear at least one time.
+/.+/, then, would match any character appearing at least once.
+By default, regexps are GREEDY. A greedy regex tries to match and return as much of the string as possible. 
+It grabs the entire string and attempts to make a match of it. Then, if that doesn't work, it moves to the beginning of the string
+from the back, one character at a time. 
+/.+trees/.match("There are trees, and then there are trees.")
+Here, the first part of the regex, .+, matches with the entire string, because all of it is characters appearing at least once.
+Then, it attempts to match the second part, trees. It starts at the back of the string, behind it. There is no /trees/ there,
+so it tries again and again, moving back one character each time, until it reaches the second "trees". Thus, this code would return:
+"There are trees, and then there are trees"
+Note that it didn't match the period! That's because the pattern to be matched, trees, didn't have a period, and the regex
+didn't match anything after the main pattern because it wasn't told to! Nifty!
+This particular greedy regex first matches the entire string, because the .+ matches with the entire string, and THEN checks for
+/trees/. If the first piece of the regular expression were something that matched less of the string, then the searching
+for /trees/ would start before the end of the string, and then backtrack from there. I THINK.
+By the way, if it wasn't clear, a period (.) is the regex character for a wildcard. So, basically, a period means "any character"
+A greedy regexp will try as many ways as possible to find matches for its patterns.
+Because of this, greedy regexes are pretty resource-intensive, despite most regular expression libraries having optimized
+backtracking stuff to make greedy regexes work better.
+When ye want a more contained/specific match, a lazy regexp is better. They're also called reluctant expressions.
+They use minimal effort, for minimal returns. A lazy regex will search from the beginning of the string, going forward, and then
+stop the second it gets any type of match at all. 
+A quantifier can be made lazy by adding a question mark after it. So the "any character at least once" quantifier can be made
+lazy as so: .+?
+Example: /.+?trees/.match("there are trees, and then there are trees.")
+This will return "there are trees". It started at the beginning, didn't find a match, then kept going forward until it found
+a matching pattern, then stopped immediately after it found one.
+This lazy regex matches with .+ as it goes along searching for /trees/, as everything before it kinda is characters.
+A sort of middle ground between greedy and lazy quantifiers, possessive quantifiers are all-or-nothing: They check for a match
+once with the entire string, and give up and return nil if they don't find a match on the first try.
+A quantifier can be made possessive by adding a plus mark to it. So the "any character at least once, but possessive" quanitifier
+would be .++
+Let's try using that in an example:
+/.++trees/.match("there are trees, and then there are trees.")
+This would return nil. Why? Because a match failed to be made!
+the reason for this is as follows: the regex first checks the entire string for .+, which matches. Then, it starts looking 
+for a match to trees AFTER the part it already has matched, and fails to find anything. This is a lot like what a greedy
+regexp does, except that the possessive can't go back and look for matches, because it can't backtrack.
+A good thing about possessive expressions is that they fail quickly. Unlike greedy expressions which use a lot of system resources
+and time only to fail, a possessive expression will fail quickly, if it fails.
+Generally, use possessive expressions when you are looking for a somewhat small subexpression inside a larger expression.
+They're very useful sometimes, but should be used with caution!
+It's helpful to think of regular expressions as writing a smaller program in another language within your program in Ruby.
+Because, honestly? Regexes ARE another language! They have an entirely different syntax, which, thankfully, is somewhat 
+The escape character for regular expressions is usually \
+Use the escape character for when you want what is normally a metacharacter to be a literal character.
+universal amongst actual coding languages. Just, be careful with them, and don't be afraid of them.
+Oh, also? The official ruby documentation site has a page on regexpressions: http://ruby-doc.org/core-2.1.1/Regexp.html
+Pretty good website for experimenting with regular expressions in ruby: http://rubular.com/
+methods can accept blocks as arguments!
+This can be done by putting an ampersand before the parameters name when defining the method, thus telling ruby that this parameter
+is expected to be a block or proc or whatever.
+def METHOD(list, &block)
+	block.call(item)
+end
+This is a very simple example of this concept, in which a method is defined. When this method is called with an object and a 
+block of code, the block of code will be called, using the object as an argument.
+So, since I seem to have forgotten EVERYTHING about blocks and stored procs and all that bullshit, a review:
+def yield_name(name)
+  puts "In the method! Let's yield."
+  yield("Kim")
+  puts "In between the yields!"
+  yield(name)
+  puts "Block complete! Back in the method."
+end
+
+yield_name("Eric") { |n| puts "My name is #{n}." }
+Here, we see a method that is set up to yield to a block of code. When the statement YIELD is put into a method, the method,
+when ran, will use the code from any block attached when calling the method.
+In addition, attaching parameters to the yield's makes the arguments attached to the yield the argument placced in the block of code.
+So, with the first yield, a string is provided as the attached block's argument. 
+In the second yield, the method'd argument is used as the block's. 
+So the first yield would puts "My name is Kim", while the second would puts "My name is Eric".
+If the yield does not have any parameters, and the method is called such that the block requires an argument {|n| n * 2}, for example, 
+then an error will be returned. Either the yield must provide its own argument, or else use the method's default one.
+Pairing unless with elsif statements WILL result in errors. elsif's only work with if/else statements, not unless/else.
