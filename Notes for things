@@ -915,7 +915,7 @@ attr_reader :blue and attr_reader "blue" both translate exactly to the following
 def blue
   @blue
 end
-if we ran this bit of code on an object, it would return that object's @blue value.
+if we called .blue on an object, it would return that object's @blue value.
 attr_writer :iris and attr_writer "iris" both translate directly to the following bit of code:
 def iris=(value)
   @iris = value
@@ -1245,3 +1245,8 @@ So the first yield would puts "My name is Kim", while the second would puts "My 
 If the yield does not have any parameters, and the method is called such that the block requires an argument {|n| n * 2}, for example, 
 then an error will be returned. Either the yield must provide its own argument, or else use the method's default one.
 Pairing unless with elsif statements WILL result in errors. elsif's only work with if/else statements, not unless/else.
+Justabout anything that could be in spiked parentheses is a code block. Code blocks can be saved as either lambdas or procs!
+That includes things in do |x| sort of things, like I usually do with loops. Those lines of code are blocks as well!
+lambdas and procs can be used as arguments for methods, even without defining them before calling the method.
+Just define the lambda in the parentheses where the arguments are!
+def method(a, b, lambda)
