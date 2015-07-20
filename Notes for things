@@ -1127,7 +1127,7 @@ match = /(.*)mouse(.*)/.match("That is a fast mouse indeed.")
 Those things in the parentheses, the .*, mean any characters, in any quantity. A period on its own (.) would mean any character.
 Their position relative to mouse mean that they will capture any amount of any characters before and after mouse.
 Each capture groups new contents are stored seperately in the MatchData instance, which becomes something like an array:
-MatchData = ["That is a fast ", " indeed.")
+MatchData = ["That is a fast ", " indeed."]
 Note that mouse itself was not put into the matchdata group! I think that's because, when a regexp has groups in it (the ()),
 only things that are in groups are put into the MatchData. So, if the regexp was more like /(.*)(mouse)(.*)/, Matchdata would
 look more like ["That is a fast ", "mouse", " indeed."]
@@ -1250,3 +1250,13 @@ That includes things in do |x| sort of things, like I usually do with loops. Tho
 lambdas and procs can be used as arguments for methods, even without defining them before calling the method.
 Just define the lambda in the parentheses where the arguments are!
 def method(a, b, lambda)
+Module and class and Kernel methods can be overwritten at any time, as needed! Simply open the class or whatever again, as though
+defining it for the first time, define the method with the same name as the original, and whatever contents you need! Yay
+Well... That's a way that might work, at least. If you ever need to do this, it would probably be best to look it up on 
+stack overflow or something.
+.magnitude works like applying absolute value to integers and floats: Makes them positive if negative, with the same dist. from 0
+Can call a certain part of a 2-D array as shown:
+array = [["yar", "FAU"], ["waugh", "ugh"]]
+array[1][1] #=> "ugh" 
+Much like with arrays, can call up certain elements of strings, as well! 
+"Hailey"[3] #=> "i"
