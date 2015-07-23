@@ -746,7 +746,7 @@ This will be in the example provided below. It should be pretty easy to see!
 objects in classes should probably be stored in variables, or else there's no real point in creating the object in the first place!
 The scope of a variable is the contexts in which it is visible to the program.
 $Global variables are available everywhere
-local variables are only available to certain methods
+local variables are only available to the method or class they were defined in.
 @@Class variables are members of a certain class.
 @Instance variables are only available to particular instances of a class
 The same restrictions and names also apply to methods!
@@ -1260,3 +1260,9 @@ array = [["yar", "FAU"], ["waugh", "ugh"]]
 array[1][1] #=> "ugh" 
 Much like with arrays, can call up certain elements of strings, as well! 
 "Hailey"[3] #=> "i"
+string interpolation within regexps is a thing you can do. 
+Using mixins, we can make members of classes comparable or enumerable, or any other thing like that.
+By adding include Comparable, it is possible to compare any instance of a given class with any other comparable object.
+To do this, however, must define the <=> method within the class.
+Global variables within classes are available from the beginning of the program.
+Global variables within class methods are only available upon that method being called at least once.
