@@ -1266,3 +1266,8 @@ By adding include Comparable, it is possible to compare any instance of a given 
 To do this, however, must define the <=> method within the class.
 Global variables within classes are available from the beginning of the program.
 Global variables within class methods are only available upon that method being called at least once.
+Conditional statements can be made into and/or statements:
+variable = hash["whoa"] || 5
+In this case, variable would be assigned to the value assigned to the key "whoa" in that hash. 
+However, if that key does not exist, then the value of 5 would be assigned to the variable. 
+I'm pretty sure that a hash with default values can't be used with this technique, as they have a value for a non-present key!
