@@ -1271,3 +1271,13 @@ variable = hash["whoa"] || 5
 In this case, variable would be assigned to the value assigned to the key "whoa" in that hash. 
 However, if that key does not exist, then the value of 5 would be assigned to the variable. 
 I'm pretty sure that a hash with default values can't be used with this technique, as they have a value for a non-present key!
+The puts statement, when applied to any object which is not a string, first attempts to run the associated object
+through the to_s method. However: Most custom classes and objects, the to_s method only returns Ruby's ID of 
+the object, which will look something like this: #<Nerb:0x00000002d346e8>. But when we try the same thing with, say,
+and integer, it works, because the integer is first turned into a string.
+Thusly, with any custom object which is going to need to be outputted, defining a new to_s is going to be required.
+array & anotherarray
+This syntax returns all characters shared between the arrays, excluding any duplicated.
+This also means that we cand do array & array, which eliminates any duplicates in said array.
+Index of said characters doesn't matter, and the returned array will be in order of appearance in the first array.
+So, [1,3,2,5] & [3,4,5,2] would return [3,2,5]
