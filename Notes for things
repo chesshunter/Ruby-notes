@@ -1337,3 +1337,44 @@ The File, IO (Which contains a lot of methods for manipulating files) classes ar
 be a good area to look for methods and stuff relevant to this, if you need anything not written here.
 http://www.tutorialspoint.com/ruby/ruby_input_output.htm Is a pretty good page for a lot of specifics stuff.
 Can probably set permissions and stuff so that the user can't randomly access the save file, only the program itself can.
+readlines method stores the entire file's contents as an array, each line is it's own element.
+This is VERY bad for a large file or when multiple users are trying to do things, but is relatively alright for smaller things.
+.foreach is much the same as readlines, except that it executes a block of code on each of the passed in lines.
+Doesn't actually return any arrays or anything from the file, but instead executes a block of code on each line that's passed into it.
+Each line is passed into .foreach, one at a time.
+Renaming files is relatively simple:
+File.rename("filename1.txt", "filenamefratata.rb")
+Files can also be deleted!:
+File.delete("textbasedgame.txt")
+Note that almost all of these methods require being called with the File class attached to them, this is so that Ruby has
+something seperating these methods from regular methods, because these are special in that they modify files and such.
+The attached argument, rather than what the methods are called on in and of themselves, is what specifies the data attached
+to these mehods.
+If unsure of syntax, look at the Ruby documentation website (find a way to save that offline), under Class: File
+filename.chmod( code ) 
+This allows you to set access restrictions on files, using the following codes: (What's a mask?)
+Mask	Description
+0700	rwx mask for owner
+0400	r for owner
+0200	w for owner
+0100	x for owner
+0070	rwx mask for group
+0040	r for group
+0020	w for group
+0010	x for group
+0007	rwx mask for other
+0004	r for other
+0002	w for other
+0001	x for other
+4000	Set user ID on execution
+2000	Set group ID on execution
+1000	Save swapped text, even after use
+I'm pretty sure these are restrictions on the users' access to the file through windows explorer and such, but I'm NOT really sure.
+Various methods exist to test the existence and characteristics of files:
+File.exist?("filename") returns true if the file with name "filename" exists within the current directory.
+File.file?("file.txt") and File.directory?(chess/ruby) return true if the associated object is a file or directory, respectively.
+Speaking of directories, there are also tools to create directories(folders?) in Ruby, but I don't wanna get into that right now.
+Can mass assign Ruby variables: 
+a, b = 1, 2
+& symbol before any parameter/argument when calling a method first runs to_proc on the arrgument before passing it to the method.
+Rule of thumb: code as though your code is going to be read and maintained by a violent psychopath who knows where you live.
