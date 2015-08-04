@@ -1285,3 +1285,55 @@ ternary operations actually don't include the first part. IE: A ternary operatio
 i == 1 ? "pie" : "oranges" can be done COMPLETELY indepentently of any statement coming beforehand.
 Because this statement returns something, however, it can be paired with statements or operations, like so:
 puts i == 1 ? "pie" : "oranges"
+With yield, this statement can be put into a method definition, then later have blocks attached to that method.
+def killa
+  yield if block_given?
+end
+killa { puts "Kill MTV\'s Daniel Cortese" } #=> "Kill MTV's Daniel Cortese"
+As ye can see, we didn't really have to do anything special to get this block called by the method, or anything like that.
+the block_given? returns true if the method it's in was called with a method attached.
+Thus, if the method was called without an attached block, it wouldn't try to yield to anything.
+That's good, because if this method were to be run without the block_given? conditional and without a block attached,
+it would throw an error, because yield gets very unhappy when it doesn't get any blocks.
+File editing in Ruby:
+Files are treated just like other classes in ruby, it seems. So, for example, to create a new file in the same directory
+as the file being ran, we: 
+File.new("test.txt", "w+")
+This would create a new text file, by the name of "test.txt".
+The symbol after the name is the type of file created, and the codes for that are as follows:
+r	Read only access. Pointer is positioned at start of file. #Reads shit. Simple.
+r+	Read and write access. Pointer is positioned at start of file.
+w	Write only access. Pointer is positioned at start of file. #These overwrite the contents of the file, erasing the previous content
+w+	Read and write access. Pointer is positioned at start of file.
+a	Write only access. Pointer is positioned at end of file. #These appends things to the end of the file, preserving the previous content
+a+	Read and write access. Pointer is positioned at end of file.
+b	Binary File Mode. Used in conjunction with the above modes. Windows/DOS only. #NO idea what this is.
+When creating a new file, it must be created with a w, a, a+, or w+ modifier, or else an error will occur.
+Files, whether they were created by Ruby or not, must first be opened before they can be read or written to. To do so, it is generally
+best to assign the opened file to a variable. For some reason or another, this causes a continual link between the file and the variable,
+Rather than just the variable storing the file as it was when it was stored. At least, that's what seems to be happening. 
+For now, let's just operate under the assumption that that is indeed what is happening.
+test = File.open("test.txt", "w+")
+test.puts("Whoa there asshole")
+test.close
+Here, we see that, first, we open the file and assign it to a variable. Opening a file also requires a modifier from the list
+above, which means that, here, we opened this file in read/write mode.
+Then, we use the puts method, which adds things to the file one line at a time.
+Then, we close the file, so that no more operations can be done to it. I think it's also best to just close it before the program
+ends, as well. I'm not sure, though.
+Files can be reopened after they are closed, obviously.
+We can also open a file up and do stuff to it, all in one convenient block.
+File.open("filename", "mode") do |aFile|
+   # ... process the file
+end
+All the standard input/output statements for Ruby also work with files, such as Filevariable.puts, Filevariable.gets, etc.
+sysread(integer) returns the first *integer* characters from the file it is called on.
+Every operation like this depends on the file pointer. The file pointer tells the program where it is in the file.
+So, for example, if we were to do file.sysread(15), the first fifteen characters are returned (I'm guessing in a stirng or array?)
+Then, the file pointer is one the sixteenth character, and will read/write from there when it is time.
+file.gets returns a line at a time of the file.
+file.syswrite("string") writes stuff into the file. #I'm only GUESSING that it's /required/ to be a string.
+The File, IO (Which contains a lot of methods for manipulating files) classes are on the Ruby Documentation site, that should
+be a good area to look for methods and stuff relevant to this, if you need anything not written here.
+http://www.tutorialspoint.com/ruby/ruby_input_output.htm Is a pretty good page for a lot of specifics stuff.
+Can probably set permissions and stuff so that the user can't randomly access the save file, only the program itself can.
