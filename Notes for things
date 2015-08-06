@@ -1378,3 +1378,6 @@ Can mass assign Ruby variables:
 a, b = 1, 2
 & symbol before any parameter/argument when calling a method first runs to_proc on the arrgument before passing it to the method.
 Rule of thumb: code as though your code is going to be read and maintained by a violent psychopath who knows where you live.
+Because methods are by default black-box type things (takes things from outside, but rest of program can't reach anything defined
+or made on the inside), methods whose only purpose is to create things should always return the thing they create, so that
+the output can be set equal to a variable, making the method actually usable.
