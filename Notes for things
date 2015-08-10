@@ -1381,3 +1381,14 @@ Rule of thumb: code as though your code is going to be read and maintained by a 
 Because methods are by default black-box type things (takes things from outside, but rest of program can't reach anything defined
 or made on the inside), methods whose only purpose is to create things should always return the thing they create, so that
 the output can be set equal to a variable, making the method actually usable.
+So. Apparently Ruby keeps tabs on the various things assigned to variables.
+For example:
+whoa = "yar"
+foo = whoa
+foo << "SYNCOPATION"
+PUTS whoa
+This would output "yarSYNCOPATION"
+This is a huge motherfucking deal! So, evidently, rather than foo being assigned a COPY of whoa, it instead BECOMES whoa
+IMPORTANT
+IN essence, foo, rather than returning a copy of whoa's contents, returns whoa itself, which then returns the contents of whoa
+This is a huge deal! 
