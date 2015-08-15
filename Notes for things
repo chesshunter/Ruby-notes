@@ -1350,6 +1350,7 @@ Note that almost all of these methods require being called with the File class a
 something seperating these methods from regular methods, because these are special in that they modify files and such.
 The attached argument, rather than what the methods are called on in and of themselves, is what specifies the data attached
 to these mehods.
+rewind method, when used on an open file, moves the pointer back to the beginning of the file.
 If unsure of syntax, look at the Ruby documentation website (find a way to save that offline), under Class: File
 filename.chmod( code ) 
 This allows you to set access restrictions on files, using the following codes: (What's a mask?)
@@ -1392,3 +1393,22 @@ This is a huge motherfucking deal! So, evidently, rather than foo being assigned
 IMPORTANT
 IN essence, foo, rather than returning a copy of whoa's contents, returns whoa itself, which then returns the contents of whoa
 This is a huge deal! 
+send(symbol [, args...]) → obj
+__send__(symbol [, args...]) → obj
+send(string [, args...]) → obj
+__send__(string [, args...]) → obj
+The send statement, when applied on an object, will call the class instance method by the name of SYMBOL on the attached object.
+If a string is used instead, it will be converted to a symbol, then the send method will work normally.
+The args part is any arguments which may be attached to the method called on the object.
+1.send '+', 2 #=> 3
+That line of code is exactly equivalent to 1 + 2
+The send method accesses ALL possible methods, including private ones. 
+Use the public_send method instead if you don't wanna access private methods.
+Subtracting an array from an array will remove all elements common to both arrays from the array subtracted from
+[1, 2, 3] - [1, 2] == [3]
+Applying this concept:
+TestClass.instance_methods - Object.methods
+instance_methods returns all the public/protected methods available for instances of a specific class, not including all the inherited methods
+Seeing as how the Testclass instance methods includes all the instance methods of any object (such as to_s or somesuch), we 
+have to subtract the Object.methods from it to receive only the methods that are in testclass.
+Don't use metaprogramming unless you have no choice.
