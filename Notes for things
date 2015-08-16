@@ -1412,3 +1412,9 @@ instance_methods returns all the public/protected methods available for instance
 Seeing as how the Testclass instance methods includes all the instance methods of any object (such as to_s or somesuch), we 
 have to subtract the Object.methods from it to receive only the methods that are in testclass.
 Don't use metaprogramming unless you have no choice.
+backticking something runs it in another process and returns the result. It captures STDOUT
+It stops the current process, and runs another.
+This can also be used to restart programs, because it stops the program's current process, and starts it again in another process.
+EX: exec("Ruby fighter.rb") 
+This will run the program fighter.rb, provided that is in the same directory as the file that the exec bit is in.
+redo statement restarts an iteration of a loop, rather than starting the next loop iteration.
